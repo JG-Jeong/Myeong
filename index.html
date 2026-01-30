@@ -24,6 +24,18 @@
       --serif: "Song Myung", "Noto Serif KR", "Nanum Myeongjo", serif;
       --sans: "S-Core Dream", "Pretendard", "Noto Sans KR", system-ui, sans-serif;
     }
+    html[lang="en"]{
+      --serif: "Playfair Display", "Cormorant Garamond", "Times New Roman", serif;
+      --sans: "Manrope", "Inter", system-ui, sans-serif;
+    }
+    html[lang="ja"]{
+      --serif: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+      --sans: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+    }
+    html[lang="zh"]{
+      --serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif;
+      --sans: "Noto Sans SC", "Source Han Sans SC", "PingFang SC", sans-serif;
+    }
 
     *{ box-sizing:border-box; }
     html,body{ height:100%; }
@@ -104,16 +116,14 @@
     .hero{
       margin-top: 24px;
       display:grid;
-      grid-template-columns: 1.1fr .9fr;
+      grid-template-columns: 1fr;
       gap: 18px;
       align-items: stretch;
-    }
-    @media (max-width: 920px){
-      .hero{ grid-template-columns: 1fr; }
     }
     @media (max-width: 700px){
       .top{ flex-wrap: wrap; border-radius: 18px; }
       .nav{ width: 100%; justify-content: flex-start; flex-wrap: wrap; }
+      .langToggle{ width: 100%; justify-content: flex-start; flex-wrap: wrap; }
     }
 
     .card{
@@ -375,37 +385,12 @@
       <div class="langToggle" aria-label="Language toggle">
         <button class="langBtn" type="button" data-lang="ko">KO</button>
         <button class="langBtn" type="button" data-lang="en">EN</button>
+        <button class="langBtn" type="button" data-lang="ja">JA</button>
+        <button class="langBtn" type="button" data-lang="zh">ZH</button>
       </div>
     </header>
 
     <section class="hero" id="about">
-      <div class="card">
-        <div class="cardPad">
-          <div class="tag" data-i18n="hero.tag">Myeong (命)</div>
-          <h1 class="headline" data-i18n-html="hero.title">생의 자취를 조용히 모으는<br/>관조의 고양이</h1>
-          <p class="sub" data-i18n="hero.sub">
-            Myeong(명)은 생년월일과 시간의 파편을 기록해 흐름을 읽습니다.
-            과장된 예언 대신, 고요한 관찰과 정밀한 정리로 당신의 리듬을 보여주는 존재.
-            이 페이지는 명확한 목적과 절제된 표현을 갖춘 소개용 랜딩입니다.
-          </p>
-
-          <div class="pillRow">
-            <div class="pill" data-i18n-html="hero.pill1"><strong>Calm</strong> 절제된 표정</div>
-            <div class="pill" data-i18n-html="hero.pill2"><strong>Observant</strong> 얇은 시선</div>
-            <div class="pill" data-i18n-html="hero.pill3"><strong>Precise</strong> 균일한 선</div>
-            <div class="pill" data-i18n="hero.pill4">흑 · 백 · 남색</div>
-          </div>
-
-          <div class="ctaRow">
-            <a class="btn primary" href="#record">
-              <span data-i18n="hero.ctaPrimary">명(命) 기록 시작</span>
-              <small data-i18n="hero.ctaSub">간단 입력</small>
-            </a>
-            <button class="btn" id="btnScrollCat" type="button" data-i18n="hero.ctaSecondary">고양이 디자인 보기 →</button>
-          </div>
-        </div>
-      </div>
-
       <aside class="card" id="cat">
         <div class="catFrame">
           <img class="catImage" src="Myeow.png" alt="삿갓과 도포를 입은 고양이 이미지" data-i18n-alt="cat.alt" />
@@ -607,6 +592,8 @@
     const $ = (id) => document.getElementById(id);
     const translations = {
       ko: {
+        "meta.title": "Myeong(명) — 생의 기록을 모으는 고양이",
+        "meta.desc": "Myeong(명): 생년월일과 시간을 기록해 삶의 리듬을 관조하는 신비한 고양이 콘셉트 페이지.",
         "brand.tagline": "Record of Life · Calm · Observant · Precise",
         "nav.about": "소개",
         "nav.cat": "고양이",
@@ -687,6 +674,8 @@
         "footer.copy": "© <span id=\"year\"></span> Myeong. Mystic landing page."
       },
       en: {
+        "meta.title": "Myeong — A cat that records the rhythm of life",
+        "meta.desc": "Myeong: a mystic cat concept page that records birth details to observe life’s rhythm.",
         "brand.tagline": "Record of Life · Calm · Observant · Precise",
         "nav.about": "About",
         "nav.cat": "Cat",
@@ -765,10 +754,179 @@
         "privacy.note": "We do not provide medical, legal, or financial advice. All results are for reference.",
         "footer.tagline": "命 · Calm · Observant · Precise",
         "footer.copy": "© <span id=\"year\"></span> Myeong. Mystic landing page."
+      },
+      ja: {
+        "meta.title": "Myeong — 生命のリズムを記録する猫",
+        "meta.desc": "Myeong: 生年月日と時間を記録し、人生のリズムを観照する神秘的な猫のコンセプトページ。",
+        "brand.tagline": "Record of Life · Calm · Observant · Precise",
+        "nav.about": "概要",
+        "nav.cat": "猫",
+        "nav.quality": "原則",
+        "nav.record": "記録",
+        "nav.faq": "FAQ",
+        "nav.privacy": "プライバシー",
+        "hero.tag": "Myeong (命)",
+        "hero.title": "静かに痕跡を集める<br/>観照の猫",
+        "hero.sub": "Myeongは生年月日と時間の断片を記録し、流れを読み解きます。大げさな予言ではなく、静かな観察と整然とした整理であなたのリズムを示します。これは簡潔で目的の明確な紹介ページです。",
+        "hero.pill1": "<strong>Calm</strong> 抑制された表情",
+        "hero.pill2": "<strong>Observant</strong> 細い視線",
+        "hero.pill3": "<strong>Precise</strong> 均一な線",
+        "hero.pill4": "黒 · 白 · 紺",
+        "hero.ctaPrimary": "記録を始める",
+        "hero.ctaSub": "簡単入力",
+        "hero.ctaSecondary": "キャラクターを見る →",
+        "cat.title": "キャラクター要約",
+        "cat.desc": "猫 + 笠 + 簡潔な韓服シルエット。<br/>表情は無表情/観照的、過度な可愛さは避ける。<br/>黒/白/紺を中心に、扇または巻物アイコン。<br/>キーワード: Calm, Observant, Precise.",
+        "cat.alt": "笠と道袍を身に着けた猫の画像",
+        "cat.ctaAria": "サジュ記録ページへ移動",
+        "collect.title": "Myeongが集めるもの",
+        "collect.item1.title": "1) 生年月日",
+        "collect.item1.desc": "日付のリズムを記録します。数字は方向を示す羅針盤になります。",
+        "collect.item2.title": "2) 出生時間",
+        "collect.item2.desc": "時間の質感を加えて観察の精度を高めます。",
+        "collect.item3.title": "3) 場所",
+        "collect.item3.desc": "地理的コンテキストは流れの背景になります。",
+        "quality.title": "高品質コンテンツの原則",
+        "quality.item1.title": "独自性と深さ",
+        "quality.item1.desc": "浅い要約ではなく、意味のある説明と文脈を提供します。",
+        "quality.item2.title": "明確な目的",
+        "quality.item2.desc": "提供する内容を明確にし、誇張ではなく観察と記録に集中します。",
+        "quality.item3.title": "見つけやすさ",
+        "quality.item3.desc": "簡潔な構成と明確なナビゲーションで探しやすくします。",
+        "service.title": "サービス概要",
+        "service.desc": "Myeongは入力情報をもとに人生の流れを整理するテキストを提供します。結果は参考用で、医療・法務・金融の判断を代替しません。",
+        "service.li1": "入力: 名前(任意)、生年月日、出生時間、出生地",
+        "service.li2": "目的: 観照的な記録/要約の提供",
+        "service.li3": "形式: 短い物語テキスト(過度な予言はしない)",
+        "record.title": "Myeong 記録",
+        "record.sub": "入力に基づき、観照的な文章を画面上で即時に表示します。送信はありません。",
+        "record.note": "※ 入力情報はブラウザ内のみで使用されます。",
+        "form.name": "名前",
+        "form.namePh": "例: ミョン",
+        "form.birth": "生年月日",
+        "form.time": "出生時間",
+        "form.timeUnknown": "不明",
+        "form.place": "出生地(都市)",
+        "form.placePh": "例: Seoul",
+        "form.submit": "サジュを見る",
+        "form.reset": "リセット",
+        "report.name": "名前",
+        "report.birth": "生年月日",
+        "report.time": "出生時間",
+        "report.place": "出生地",
+        "report.note": "送信すると観照的な文章が表示されます。",
+        "report.nameDefault": "あなた",
+        "report.noteAfter": "Myeongは数の粒度を静かに読み解きます。あなたのリズムは静かで正確な痕跡として戻ります。",
+        "report.birthMissing": "未入力",
+        "report.placeMissing": "未記録",
+        "faq.title": "FAQ",
+        "faq.q1.q": "Q. どんな結果が得られますか？",
+        "faq.q1.a": "入力情報をもとに整理された観照的テキストです。予言や断定は含みません。",
+        "faq.q2.q": "Q. 正確さは保証されますか？",
+        "faq.q2.a": "保証しません。本サービスは参考用の記録/要約ツールです。",
+        "faq.q3.q": "Q. データはどこに保存されますか？",
+        "faq.q3.a": "データはブラウザ内のみで使用され、送信されません。詳しくはプライバシーをご覧ください。",
+        "privacy.title": "プライバシー(要約)",
+        "privacy.desc": "Myeongはサービス提供に必要最小限の情報のみを扱います。以下は要約です。",
+        "privacy.li1": "収集項目: 名前(任意)、生年月日、出生時間、出生地",
+        "privacy.li2": "利用目的: 観照的な記録テキストの提供",
+        "privacy.li3": "処理方式: ブラウザ内のみ(送信なし)",
+        "privacy.li4": "保存期間: 保存しません",
+        "privacy.li5": "広告/クッキー: Google AdSense等の第三者広告がクッキーを使用する場合があります。",
+        "privacy.note": "医療・法務・金融の助言は行わず、結果は参考用です。",
+        "footer.tagline": "命 · Calm · Observant · Precise",
+        "footer.copy": "© <span id=\"year\"></span> Myeong. Mystic landing page."
+      },
+      zh: {
+        "meta.title": "Myeong — 记录生命节奏的猫",
+        "meta.desc": "Myeong：记录出生信息以观照生命节奏的神秘猫概念页面。",
+        "brand.tagline": "Record of Life · Calm · Observant · Precise",
+        "nav.about": "介绍",
+        "nav.cat": "猫",
+        "nav.quality": "原则",
+        "nav.record": "记录",
+        "nav.faq": "FAQ",
+        "nav.privacy": "隐私",
+        "hero.tag": "Myeong (命)",
+        "hero.title": "安静收集生命痕迹的<br/>观照之猫",
+        "hero.sub": "Myeong记录生日与时间的碎片，阅读人生的流动。它不承诺夸张的预言，而以冷静观察与精确整理呈现你的节奏。这是目的清晰、表达克制的介绍页面。",
+        "hero.pill1": "<strong>Calm</strong> 克制表情",
+        "hero.pill2": "<strong>Observant</strong> 细长目光",
+        "hero.pill3": "<strong>Precise</strong> 均匀线条",
+        "hero.pill4": "黑 · 白 · 藏青",
+        "hero.ctaPrimary": "开始记录",
+        "hero.ctaSub": "快速输入",
+        "hero.ctaSecondary": "查看角色 →",
+        "cat.title": "角色概述",
+        "cat.desc": "猫 + 斗笠 + 简约韩服轮廓。<br/>表情克制、观照，避免过度可爱。<br/>黑/白/藏青为主，扇或卷轴图标。<br/>关键词: Calm, Observant, Precise.",
+        "cat.alt": "戴斗笠与道袍的猫",
+        "cat.ctaAria": "前往四柱记录页面",
+        "collect.title": "Myeong 收集的内容",
+        "collect.item1.title": "1) 出生日期",
+        "collect.item1.desc": "记录日期的节奏，数字成为方向的罗盘。",
+        "collect.item2.title": "2) 出生时间",
+        "collect.item2.desc": "加入时间纹理，提升观察的精度。",
+        "collect.item3.title": "3) 地点",
+        "collect.item3.desc": "地理语境成为流动的背景。",
+        "quality.title": "高质量内容原则",
+        "quality.item1.title": "原创与深度",
+        "quality.item1.desc": "提供有意义的说明与语境，避免浅层总结或复制内容。",
+        "quality.item2.title": "明确目的",
+        "quality.item2.desc": "清楚说明提供内容，不夸大承诺，专注观察与记录。",
+        "quality.item3.title": "易于导航",
+        "quality.item3.desc": "简洁结构与清晰导航帮助用户快速找到所需信息。",
+        "service.title": "服务说明",
+        "service.desc": "Myeong根据输入整理人生流动的简要文本。结果仅供参考，不替代医疗、法律或金融决策。",
+        "service.li1": "输入：姓名(可选)、出生日期、出生时间、出生地",
+        "service.li2": "目的：提供观照式记录/摘要",
+        "service.li3": "形式：简短叙述文本(不做夸张预言)",
+        "record.title": "Myeong 记录",
+        "record.sub": "基于输入即时显示观照文本，无需提交，直接查看。",
+        "record.note": "※ 输入信息仅在浏览器内使用。",
+        "form.name": "姓名",
+        "form.namePh": "例如：Myeong",
+        "form.birth": "出生日期",
+        "form.time": "出生时间",
+        "form.timeUnknown": "未知",
+        "form.place": "出生地(城市)",
+        "form.placePh": "例如：Seoul",
+        "form.submit": "查看四柱",
+        "form.reset": "重置",
+        "report.name": "姓名",
+        "report.birth": "出生日期",
+        "report.time": "出生时间",
+        "report.place": "出生地",
+        "report.note": "提交后显示观照文本。",
+        "report.nameDefault": "你",
+        "report.noteAfter": "Myeong静静读取数字的纹理，你的节奏以安静而精确的痕迹回到眼前。",
+        "report.birthMissing": "未填写",
+        "report.placeMissing": "未记录",
+        "faq.title": "FAQ",
+        "faq.q1.q": "Q. 我会得到什么结果？",
+        "faq.q1.a": "基于输入的观照式摘要文本，不包含预言或断言。",
+        "faq.q2.q": "Q. 会保证准确吗？",
+        "faq.q2.a": "不会。本服务仅为参考式记录/摘要工具。",
+        "faq.q3.q": "Q. 数据存在哪里？",
+        "faq.q3.a": "数据只在浏览器内使用，不会传输。详情见隐私部分。",
+        "privacy.title": "隐私(摘要)",
+        "privacy.desc": "Myeong仅处理提供服务所需的最少信息。以下为摘要说明。",
+        "privacy.li1": "收集项目：姓名(可选)、出生日期、出生时间、出生地",
+        "privacy.li2": "使用目的：提供观照式记录文本",
+        "privacy.li3": "处理方式：仅在浏览器内(不传输)",
+        "privacy.li4": "保存期限：不保存",
+        "privacy.li5": "广告/Cookie：Google AdSense 等第三方广告可能使用 Cookie。",
+        "privacy.note": "不提供医疗、法律或金融建议，结果仅供参考。",
+        "footer.tagline": "命 · Calm · Observant · Precise",
+        "footer.copy": "© <span id=\"year\"></span> Myeong. Mystic landing page."
       }
     };
-    let currentLang = localStorage.getItem("myeongLang") ||
-      (((navigator.language || "ko").startsWith("ko")) ? "ko" : "en");
+    let currentLang = localStorage.getItem("myeongLang") || (function(){
+      const lang = (navigator.language || "ko").toLowerCase();
+      if (lang.startsWith("ko")) return "ko";
+      if (lang.startsWith("ja")) return "ja";
+      if (lang.startsWith("zh")) return "zh";
+      return "en";
+    })();
 
     function t(key){
       return (translations[currentLang] && translations[currentLang][key]) || key;
@@ -778,6 +936,11 @@
       currentLang = translations[lang] ? lang : "ko";
       localStorage.setItem("myeongLang", currentLang);
       document.documentElement.lang = currentLang;
+      document.title = t("meta.title");
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc){
+        metaDesc.setAttribute("content", t("meta.desc"));
+      }
 
       document.querySelectorAll("[data-i18n]").forEach((el) => {
         el.textContent = t(el.getAttribute("data-i18n"));
@@ -802,9 +965,12 @@
       $("rNote").textContent = hasResult ? t("report.noteAfter") : t("report.note");
     }
 
-    $("btnScrollCat").addEventListener("click", () => {
-      document.querySelector("#cat").scrollIntoView({ behavior: "smooth", block: "start" });
-    });
+    const btnScrollCat = $("btnScrollCat");
+    if (btnScrollCat){
+      btnScrollCat.addEventListener("click", () => {
+        document.querySelector("#cat").scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
     $("btnMyeong").addEventListener("click", () => {
       window.location.href = "index.html";
     });
