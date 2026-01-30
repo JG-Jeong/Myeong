@@ -423,11 +423,11 @@
     <section class="card">
       <div class="cardPad">
         <p class="sub" style="margin-bottom:10px;">
-          Myeong은 생의 기록을 수집해 관조의 문장을 만듭니다.
-          아래 폼은 Formspree로 전송됩니다.
+          Myeong은 입력 정보를 바탕으로 관조형 문장을 즉시 보여줍니다.
+          전송 없이, 화면에서 바로 확인하세요.
         </p>
 
-        <form class="formRow" action="https://formspree.io/f/xaqjdknw" method="POST">
+        <form class="formRow" id="recordForm">
           <div class="field">
             <label for="name">이름</label>
             <input id="name" name="name" placeholder="예: 정명" />
@@ -459,18 +459,16 @@
             <input id="place" name="birth_place" placeholder="예: Seoul" required />
           </div>
 
-          <div class="checkRow">
-            <input id="consent" name="consent" type="checkbox" required />
-            <label for="consent">개인정보 처리방침에 동의합니다. (아래 ‘개인정보’ 섹션 참고)</label>
-          </div>
-
           <div class="ctaRow" style="margin-top:12px;">
-            <button class="btn primary" type="submit">사주팔자 요청 보내기</button>
+            <button class="btn primary" type="submit">사주팔자 보기</button>
             <button class="btn" type="reset">초기화</button>
           </div>
         </form>
 
-        <div class="note">※ 입력 정보는 Formspree를 통해 전송됩니다.</div>
+        <div class="result" id="result">
+          입력 후 “사주팔자 보기”를 누르면 결과가 표시됩니다.
+        </div>
+        <div class="note">※ 입력 정보는 브라우저 안에서만 사용됩니다.</div>
       </div>
     </section>
 
@@ -488,7 +486,7 @@
           </div>
           <div class="qaItem">
             <b>Q. 데이터를 어디에 저장하나요?</b>
-            <div class="rich">폼 전송은 Formspree를 통해 처리됩니다. 자세한 내용은 개인정보 섹션을 확인하세요.</div>
+            <div class="rich">데이터는 브라우저 안에서만 사용되며 전송되지 않습니다. 자세한 내용은 개인정보 섹션을 확인하세요.</div>
           </div>
         </div>
       </div>
@@ -504,8 +502,8 @@
         <ul class="list">
           <li>수집 항목: 이름(선택), 생년월일, 출생 시간, 출생지</li>
           <li>이용 목적: 관조형 기록 텍스트 제공 및 요청 처리</li>
-          <li>전송 경로: Formspree를 통한 제출</li>
-          <li>보관 기간: 요청 처리에 필요한 기간 동안</li>
+          <li>처리 방식: 브라우저 내 즉시 처리(전송 없음)</li>
+          <li>보관 기간: 별도 저장하지 않음</li>
           <li>광고/쿠키: Google AdSense 등 제3자 광고가 쿠키를 사용할 수 있습니다.</li>
         </ul>
         <p class="rich" style="margin-top:10px;">
@@ -528,6 +526,44 @@
     });
     $("btnMyeong").addEventListener("click", () => {
       window.location.href = "index.html";
+    });
+
+    function formatDate(iso){
+      if(!iso) return "";
+      const [y,m,d] = iso.split("-");
+      return `${y}.${m}.${d}`;
+    }
+
+    function makeSummary(){
+      const name = $("name").value.trim() || "당신";
+      const birth = $("birth").value;
+      const t = $("time").value;
+      const place = $("place").value.trim() || "미기록";
+
+      const birthTxt = birth ? formatDate(birth) : "생년월일 미입력";
+      const timeTxt = {
+        unknown: "시간 미상",
+        ja: "子(23-01)", chou: "丑(01-03)", yin: "寅(03-05)", mao: "卯(05-07)",
+        chen: "辰(07-09)", si: "巳(09-11)", wu: "午(11-13)", wei: "未(13-15)",
+        shen: "申(15-17)", you: "酉(17-19)", xu: "戌(19-21)", hai: "亥(21-23)"
+      }[t] || "시간 미상";
+
+      const msg =
+`[Myeong 사주팔자]
+- 이름: ${name}
+- 생년월일: ${birthTxt}
+- 출생 시간: ${timeTxt}
+- 출생지: ${place}
+
+Myeong은 숫자의 결을 모아 조용히 흐름을 관찰합니다.
+당신의 리듬은 과장되지 않게, 정밀하게 기록됩니다.`;
+
+      $("result").textContent = msg;
+    }
+
+    $("recordForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      makeSummary();
     });
 
     $("year").textContent = new Date().getFullYear();
