@@ -223,6 +223,29 @@
 
     .item h3{ margin: 0 0 8px; font-size: 16px; }
     .item p{ margin:0; color: var(--dim); line-height: 1.7; font-size: 14px; }
+    .rich{
+      color: var(--dim);
+      line-height: 1.75;
+      font-size: 14px;
+    }
+    .list{
+      margin: 10px 0 0;
+      padding-left: 18px;
+      color: var(--dim);
+      line-height: 1.75;
+      font-size: 14px;
+    }
+    .qa{
+      display:grid;
+      gap: 12px;
+    }
+    .qaItem{
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      background: rgba(255,255,255,.03);
+    }
+    .qaItem b{ color: var(--ivory); }
 
     .formRow{ display:flex; flex-wrap:wrap; gap:10px; margin-top: 12px; }
     .field{ flex: 1 1 190px; display:flex; flex-direction:column; gap:6px; }
@@ -242,6 +265,15 @@
     .note{
       margin-top: 10px; font-size: 12px; color: rgba(242,241,236,.5);
     }
+    .checkRow{
+      margin-top: 8px;
+      display:flex;
+      align-items:flex-start;
+      gap:8px;
+      font-size: 12px;
+      color: rgba(242,241,236,.65);
+    }
+    .checkRow input{ margin-top: 2px; }
 
     footer{
       margin-top: 28px;
@@ -276,7 +308,10 @@
       <nav class="nav">
         <a href="#about">소개</a>
         <a href="#cat">고양이</a>
+        <a href="#quality">원칙</a>
         <a href="#record">기록</a>
+        <a href="#faq">FAQ</a>
+        <a href="#privacy">개인정보</a>
       </nav>
     </header>
 
@@ -288,7 +323,7 @@
           <p class="sub">
             Myeong(명)은 생년월일과 시간의 파편을 기록해 흐름을 읽습니다.
             과장된 예언 대신, 고요한 관찰과 정밀한 정리로 당신의 리듬을 보여주는 존재.
-            이 페이지는 그 컨셉을 위한 신비한 랜딩입니다.
+            이 페이지는 명확한 목적과 절제된 표현을 갖춘 소개용 랜딩입니다.
           </p>
 
           <div class="pillRow">
@@ -347,6 +382,43 @@
       </div>
     </section>
 
+    <h2 class="sectionTitle" id="quality">고품질 콘텐츠 원칙</h2>
+    <section class="grid3">
+      <div class="card item">
+        <div class="cardPad">
+          <h3>독창성과 깊이</h3>
+          <p>짧은 문구 대신 의미 있는 설명과 맥락을 제공합니다. 얕은 요약·복제 콘텐츠는 배제합니다.</p>
+        </div>
+      </div>
+      <div class="card item">
+        <div class="cardPad">
+          <h3>명확한 목적</h3>
+          <p>무엇을 제공하는지 분명히 밝히고, 과장된 약속 없이 관찰과 기록에 집중합니다.</p>
+        </div>
+      </div>
+      <div class="card item">
+        <div class="cardPad">
+          <h3>탐색의 편의성</h3>
+          <p>간결한 구조와 명확한 내비게이션으로 원하는 정보를 쉽게 찾도록 설계합니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:14px;">
+      <div class="cardPad">
+        <div class="sectionTitle" style="margin-top:0;">서비스 안내</div>
+        <p class="rich">
+          Myeong은 입력 정보를 기반으로 삶의 흐름을 정리하는 텍스트를 제공합니다.
+          결과는 참고용이며, 의료·법률·금융 의사결정을 대신하지 않습니다.
+        </p>
+        <ul class="list">
+          <li>입력: 이름(선택), 생년월일, 출생 시간, 출생지</li>
+          <li>목적: 관조적 기록/정리 문장 제공</li>
+          <li>형식: 요약 텍스트(과장된 예언 금지)</li>
+        </ul>
+      </div>
+    </section>
+
     <h2 class="sectionTitle" id="record">명(命) 기록</h2>
     <section class="card">
       <div class="cardPad">
@@ -387,6 +459,11 @@
             <input id="place" name="birth_place" placeholder="예: Seoul" required />
           </div>
 
+          <div class="checkRow">
+            <input id="consent" name="consent" type="checkbox" required />
+            <label for="consent">개인정보 처리방침에 동의합니다. (아래 ‘개인정보’ 섹션 참고)</label>
+          </div>
+
           <div class="ctaRow" style="margin-top:12px;">
             <button class="btn primary" type="submit">사주팔자 요청 보내기</button>
             <button class="btn" type="reset">초기화</button>
@@ -394,6 +471,46 @@
         </form>
 
         <div class="note">※ 입력 정보는 Formspree를 통해 전송됩니다.</div>
+      </div>
+    </section>
+
+    <h2 class="sectionTitle" id="faq">FAQ</h2>
+    <section class="card">
+      <div class="cardPad">
+        <div class="qa">
+          <div class="qaItem">
+            <b>Q. 어떤 결과를 받게 되나요?</b>
+            <div class="rich">입력 정보를 바탕으로 정리된 관조형 텍스트를 받습니다. 예언이나 단정적 판단은 포함하지 않습니다.</div>
+          </div>
+          <div class="qaItem">
+            <b>Q. 정확도를 보장하나요?</b>
+            <div class="rich">보장하지 않습니다. 본 서비스는 참고용 기록/정리 도구입니다.</div>
+          </div>
+          <div class="qaItem">
+            <b>Q. 데이터를 어디에 저장하나요?</b>
+            <div class="rich">폼 전송은 Formspree를 통해 처리됩니다. 자세한 내용은 개인정보 섹션을 확인하세요.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <h2 class="sectionTitle" id="privacy">개인정보 처리방침(요약)</h2>
+    <section class="card">
+      <div class="cardPad">
+        <p class="rich">
+          Myeong은 서비스 제공을 위해 최소한의 정보를 수집합니다. 아래는 요약 안내이며,
+          요청 시 보다 상세한 안내를 제공합니다.
+        </p>
+        <ul class="list">
+          <li>수집 항목: 이름(선택), 생년월일, 출생 시간, 출생지</li>
+          <li>이용 목적: 관조형 기록 텍스트 제공 및 요청 처리</li>
+          <li>전송 경로: Formspree를 통한 제출</li>
+          <li>보관 기간: 요청 처리에 필요한 기간 동안</li>
+          <li>광고/쿠키: Google AdSense 등 제3자 광고가 쿠키를 사용할 수 있습니다.</li>
+        </ul>
+        <p class="rich" style="margin-top:10px;">
+          의료·법률·금융 관련 조언을 제공하지 않으며, 모든 결과는 참고용입니다.
+        </p>
       </div>
     </section>
 
@@ -405,19 +522,6 @@
 
   <script>
     const $ = (id) => document.getElementById(id);
-
-    const timeLabel = {
-      unknown: "시간 미상",
-      ja: "子(23-01)", chou: "丑(01-03)", yin: "寅(03-05)", mao: "卯(05-07)",
-      chen: "辰(07-09)", si: "巳(09-11)", wu: "午(11-13)", wei: "未(13-15)",
-      shen: "申(15-17)", you: "酉(17-19)", xu: "戌(19-21)", hai: "亥(21-23)"
-    };
-
-    function formatDate(iso){
-      if(!iso) return "";
-      const [y,m,d] = iso.split("-");
-      return `${y}.${m}.${d}`;
-    }
 
     $("btnScrollCat").addEventListener("click", () => {
       document.querySelector("#cat").scrollIntoView({ behavior: "smooth", block: "start" });
