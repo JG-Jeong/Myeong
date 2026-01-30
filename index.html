@@ -339,22 +339,22 @@
     <section class="card">
       <div class="cardPad">
         <p class="sub" style="margin-bottom:10px;">
-          Myeong은 정보의 조각을 모아 관조의 문장을 만듭니다.
-          여기서는 로컬에서만 간단히 요약을 생성합니다.
+          Myeong은 생의 기록을 수집해 관조의 문장을 만듭니다.
+          아래 폼은 Formspree로 전송됩니다.
         </p>
 
-        <div class="formRow">
+        <form class="formRow" action="https://formspree.io/f/xaqjdknw" method="POST">
           <div class="field">
-            <label for="name">이름(선택)</label>
-            <input id="name" placeholder="예: 정명" />
+            <label for="name">이름</label>
+            <input id="name" name="name" placeholder="예: 정명" />
           </div>
           <div class="field">
             <label for="birth">생년월일</label>
-            <input id="birth" type="date" />
+            <input id="birth" name="birth" type="date" required />
           </div>
           <div class="field">
             <label for="time">출생 시간</label>
-            <select id="time">
+            <select id="time" name="birth_time" required>
               <option value="unknown">모름</option>
               <option value="ja">子 (23-01)</option>
               <option value="chou">丑 (01-03)</option>
@@ -372,19 +372,16 @@
           </div>
           <div class="field">
             <label for="place">출생지(도시)</label>
-            <input id="place" placeholder="예: Seoul" />
+            <input id="place" name="birth_place" placeholder="예: Seoul" required />
           </div>
-        </div>
 
-        <div class="ctaRow" style="margin-top:12px;">
-          <button class="btn primary" id="btnMake" type="button">기록 만들기</button>
-          <button class="btn" id="btnReset" type="button">초기화</button>
-        </div>
+          <div class="ctaRow" style="margin-top:12px;">
+            <button class="btn primary" type="submit">사주팔자 요청 보내기</button>
+            <button class="btn" type="reset">초기화</button>
+          </div>
+        </form>
 
-        <div class="result" id="result">
-          기록을 만들면 Myeong의 문장이 표시됩니다.
-        </div>
-        <div class="note">※ 입력 정보는 이 페이지 안에서만 사용되며 저장/전송되지 않습니다.</div>
+        <div class="note">※ 입력 정보는 Formspree를 통해 전송됩니다.</div>
       </div>
     </section>
 
@@ -410,38 +407,6 @@
       return `${y}.${m}.${d}`;
     }
 
-    function makeSummary(){
-      const name = $("name").value.trim() || "당신";
-      const birth = $("birth").value;
-      const t = $("time").value;
-      const place = $("place").value.trim() || "미기록";
-
-      const birthTxt = birth ? formatDate(birth) : "생년월일 미입력";
-      const timeTxt = timeLabel[t] || "시간 미상";
-
-      const msg =
-`[Myeong 기록]
-- 이름: ${name}
-- 생년월일: ${birthTxt}
-- 시간: ${timeTxt}
-- 장소: ${place}
-
-Myeong은 숫자의 결을 모아 조용히 흐름을 관찰합니다.
-당신의 리듬은 과장되지 않게, 정밀하게 기록됩니다.`;
-
-      $("result").textContent = msg;
-    }
-
-    function resetAll(){
-      $("name").value = "";
-      $("birth").value = "";
-      $("time").value = "unknown";
-      $("place").value = "";
-      $("result").textContent = "기록을 만들면 Myeong의 문장이 표시됩니다.";
-    }
-
-    $("btnMake").addEventListener("click", makeSummary);
-    $("btnReset").addEventListener("click", resetAll);
     $("btnScrollCat").addEventListener("click", () => {
       document.querySelector("#cat").scrollIntoView({ behavior: "smooth", block: "start" });
     });
