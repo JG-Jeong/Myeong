@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>사주팔자 | 당신의 사주를 읽다</title>
+  <meta name="description" content="사주팔자(四柱八字) 소개 페이지. 사주란 무엇인지, 어떤 정보를 제공하는지 간단히 안내합니다." />
+  <style>
+    :root{
+      --bg: #0b0a09;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.10);
+      --text: rgba(255,255,255,.90);
+      --muted: rgba(255,255,255,.65);
+      --line: rgba(255,255,255,.14);
+      --gold: #d7b56d;
+      --red: #b5462e;
+      --shadow: 0 18px 45px rgba(0,0,0,.45);
+      --radius: 16px;
+      --maxw: 1080px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", Arial, sans-serif;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 700px at 20% 0%, rgba(215,181,109,.20), transparent 60%),
+        radial-gradient(900px 600px at 80% 10%, rgba(181,70,46,.18), transparent 55%),
+        radial-gradient(900px 900px at 50% 120%, rgba(255,255,255,.06), transparent 60%),
+        var(--bg);
+      letter-spacing: -0.2px;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ max-width: var(--maxw); margin:0 auto; padding: 28px 18px 70px; }
+
+    /* Top bar */
+    .top{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px; padding: 14px 16px; border: 1px solid var(--line);
+      border-radius: 999px; background: rgba(0,0,0,.22); backdrop-filter: blur(8px);
+      box-shadow: var(--shadow);
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight: 700;
+    }
+    .seal{
+      width:34px; height:34px; border-radius: 10px;
+      background: linear-gradient(135deg, rgba(215,181,109,.95), rgba(181,70,46,.9));
+      display:grid; place-items:center;
+      color: #120f0a;
+      font-family: var(--mono);
+      font-weight: 900;
+      box-shadow: 0 10px 25px rgba(0,0,0,.35);
+    }
+    .nav{ display:flex; gap:14px; color: var(--muted); font-size: 14px; }
+    .nav a{ padding: 8px 10px; border-radius: 999px; border: 1px solid transparent; }
+    .nav a:hover{ border-color: var(--line); background: rgba(255,255,255,.04); color: var(--text); }
+
+    /* Hero */
+    .hero{
+      margin-top: 22px;
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+    @media (max-width: 920px){
+      .hero{ grid-template-columns: 1fr; }
+    }
+
+    .card{
+      border:1px solid var(--line);
+      background: rgba(0,0,0,.24);
+      backdrop-filter: blur(10px);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .cardPad{ padding: 22px; }
+
+    .headline{
+      font-size: 44px;
+      line-height: 1.05;
+      margin: 0 0 14px;
+      letter-spacing: -1px;
+    }
+    @media (max-width: 520px){ .headline{ font-size: 36px; } }
+
+    .sub{
+      margin:0 0 18px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.7;
+      max-width: 60ch;
+    }
+
+    .pillRow{ display:flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+    .pill{
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .pill strong{ color: var(--text); font-weight: 650; }
+
+    .ctaRow{ display:flex; flex-wrap:wrap; gap: 10px; margin-top: 20px; }
+    .btn{
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      padding: 12px 14px;
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      font-weight: 650;
+      cursor:pointer;
+      transition: transform .08s ease, background .2s ease, border-color .2s ease;
+      display:inline-flex; align-items:center; gap:10px;
+      user-select:none;
+    }
+    .btn:hover{ background: rgba(255,255,255,.10); border-color: rgba(215,181,109,.45); }
+    .btn:active{ transform: translateY(1px); }
+    .btn.primary{
+      border-color: rgba(215,181,109,.55);
+      background: linear-gradient(135deg, rgba(215,181,109,.22), rgba(181,70,46,.16));
+    }
+    .btn small{ color: var(--muted); font-weight: 500; }
+
+    /* Right panel */
+    .hanja{
+      font-size: 54px;
+      letter-spacing: 1px;
+      margin: 4px 0 10px;
+      font-family: "Noto Serif CJK KR", "Song Myung", "Batang", serif;
+      color: rgba(255,255,255,.92);
+    }
+    .stamp{
+      border-top: 1px dashed rgba(215,181,109,.35);
+      margin-top: 18px; padding-top: 16px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    .mono{
+      font-family: var(--mono);
+      font-size: 12px;
+      color: rgba(255,255,255,.55);
+    }
+
+    /* Sections */
+    .grid3{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    @media (max-width: 920px){ .grid3{ grid-template-columns: 1fr; } }
+
+    .sectionTitle{
+      margin: 26px 0 10px;
+      font-size: 18px;
+      color: rgba(255,255,255,.90);
+      letter-spacing: -.2px;
+    }
+    .item h3{
+      margin: 0 0 8px;
+      font-size: 16px;
+    }
+    .item p{
+      margin:0;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    /* Mini form */
+    .formRow{ display:flex; flex-wrap:wrap; gap:10px; margin-top: 12px; }
+    .field{
+      flex: 1 1 180px;
+      display:flex; flex-direction:column; gap:6px;
+    }
+    label{ font-size: 12px; color: rgba(255,255,255,.65); }
+    input, select{
+      padding: 12px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      outline: none;
+    }
+    input:focus, select:focus{ border-color: rgba(215,181,109,.55); }
+
+    .result{
+      margin-top: 12px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      padding: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 14px;
+      min-height: 64px;
+    }
+
+    footer{
+      margin-top: 26px;
+      color: rgba(255,255,255,.45);
+      font-size: 12px;
+      display:flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .tagline{
+      border: 1px solid rgba(255,255,255,.12);
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(0,0,0,.18);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <div class="brand">
+        <div class="seal">命</div>
+        <div>
+          <div style="font-size:14px; line-height:1.1;">SajuPalsa</div>
+          <div class="mono">Four Pillars · Bazi · 사주팔자</div>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="#about">소개</a>
+        <a href="#how">구성</a>
+        <a href="#try">간단 입력</a>
+      </nav>
+    </header>
+
+    <section class="hero" id="about">
+      <div class="card">
+        <div class="cardPad">
+          <h1 class="headline">사주팔자(四柱八字),<br/>시간으로 읽는 인생의 구조</h1>
+          <p class="sub">
+            사주팔자는 태어난 <b>연·월·일·시</b>를 네 개의 기둥(四柱)로 보고,
+            그 안의 여덟 글자(八字)를 통해 성향, 균형, 흐름을 해석하는 동아시아 전통 분석 체계입니다.
+            이 페이지는 “사주가 뭔지”를 짧게 설명하는 소개용 랜딩입니다.
+          </p>
+
+          <div class="pillRow">
+            <div class="pill"><strong>四柱</strong> 연·월·일·시</div>
+            <div class="pill"><strong>八字</strong> 천간·지지 조합</div>
+            <div class="pill"><strong>陰陽</strong> 균형/편중</div>
+            <div class="pill"><strong>五行</strong> 木火土金水</div>
+          </div>
+
+          <div class="ctaRow">
+            <a class="btn primary" href="#try">
+              <span>간단 입력 보기</span>
+              <small>데모</small>
+            </a>
+            <button class="btn" id="btnScrollHow" type="button">
+              구성 설명 보기 →
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <aside class="card">
+        <div class="cardPad">
+          <div class="hanja">四柱八字</div>
+          <div style="height:10px"></div>
+          <div class="pillRow">
+            <div class="pill">기와·한복·한자 감성 UI</div>
+            <div class="pill">전통 + 현대 카드형 레이아웃</div>
+            <div class="pill">모바일 최적화</div>
+          </div>
+
+          <div class="stamp">
+            <b style="color: rgba(215,181,109,.95);">포인트</b><br/>
+            “예언”이 아니라, <b>패턴과 균형을 읽는 해석</b>으로 설명하면 거부감이 줄고,
+            UX도 깔끔해집니다.
+            <div style="margin-top:10px" class="mono">
+              ※ 실제 사주 계산(만세력)은 이 데모에 포함하지 않았습니다.
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <h2 class="sectionTitle" id="how">사주팔자는 무엇을 봄?</h2>
+    <section class="grid3">
+      <div class="card item">
+        <div class="cardPad">
+          <h3>1) 구조(四柱)</h3>
+          <p>
+            태어난 연·월·일·시를 기반으로 기본 틀을 세웁니다.
+            이 틀은 해석의 “좌표계” 역할을 합니다.
+          </p>
+        </div>
+      </div>
+      <div class="card item">
+        <div class="cardPad">
+          <h3>2) 균형(陰陽·五行)</h3>
+          <p>
+            기운의 균형과 편중을 보며, 과/부족이 어떤 성향과 선택 패턴으로 나타나는지 해석합니다.
+          </p>
+        </div>
+      </div>
+      <div class="card item">
+        <div class="cardPad">
+          <h3>3) 흐름(대운·세운)</h3>
+          <p>
+            시간 축에서 변화 구간을 보고, 어떤 시기에 무엇이 강조되는지 “트렌드”로 읽습니다.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <h2 class="sectionTitle" id="try">간단 입력(소개용 데모)</h2>
+    <section class="card">
+      <div class="cardPad">
+        <p class="sub" style="margin-bottom:10px;">
+          아래는 “소개 페이지”에 넣기 좋은 초간단 데모입니다. 실제 사주 계산 대신,
+          입력을 받아 <b>표시용 텍스트</b>를 만드는 형태입니다.
+        </p>
+
+        <div class="formRow">
+          <div class="field">
+            <label for="name">이름</label>
+            <input id="name" placeholder="예: 정길" />
+          </div>
+          <div class="field">
+            <label for="birth">생년월일</label>
+            <input id="birth" type="date" />
+          </div>
+          <div class="field">
+            <label for="time">출생 시간(대략)</label>
+            <select id="time">
+              <option value="unknown">모름</option>
+              <option value="ja">子 (23-01)</option>
+              <option value="chou">丑 (01-03)</option>
+              <option value="yin">寅 (03-05)</option>
+              <option value="mao">卯 (05-07)</option>
+              <option value="chen">辰 (07-09)</option>
+              <option value="si">巳 (09-11)</option>
+              <option value="wu">午 (11-13)</option>
+              <option value="wei">未 (13-15)</option>
+              <option value="shen">申 (15-17)</option>
+              <option value="you">酉 (17-19)</option>
+              <option value="xu">戌 (19-21)</option>
+              <option value="hai">亥 (21-23)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="ctaRow" style="margin-top:12px;">
+          <button class="btn primary" id="btnMake" type="button">요약 만들기</button>
+          <button class="btn" id="btnReset" type="button">초기화</button>
+        </div>
+
+        <div class="result" id="result">
+          입력 후 “요약 만들기”를 누르면 소개 문구가 표시됩니다.
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="tagline">四柱八字 · 陰陽 · 五行</div>
+      <div>© <span id="year"></span> SajuPalsa. Intro landing page.</div>
+    </footer>
+  </div>
+
+  <script>
+    const $ = (id) => document.getElementById(id);
+
+    const timeLabel = {
+      unknown: "시간 미상",
+      ja: "子(23-01)", chou: "丑(01-03)", yin: "寅(03-05)", mao: "卯(05-07)",
+      chen: "辰(07-09)", si: "巳(09-11)", wu: "午(11-13)", wei: "未(13-15)",
+      shen: "申(15-17)", you: "酉(17-19)", xu: "戌(19-21)", hai: "亥(21-23)"
+    };
+
+    function formatDate(iso){
+      if(!iso) return "";
+      const [y,m,d] = iso.split("-");
+      return `${y}.${m}.${d}`;
+    }
+
+    function makeSummary(){
+      const name = $("name").value.trim() || "사용자";
+      const birth = $("birth").value;
+      const t = $("time").value;
+
+      const birthTxt = birth ? formatDate(birth) : "생년월일 미입력";
+      const timeTxt = timeLabel[t] || "시간 미상";
+
+      const msg =
+`[사주팔자 소개 데모]
+- 이름: ${name}
+- 출생: ${birthTxt} / ${timeTxt}
+
+사주팔자(四柱八字)는 연·월·일·시(四柱)를 기준으로,
+천간·지지의 조합(八字)을 통해 성향/균형(陰陽·五行)과 흐름을 해석합니다.
+
+※ 이 화면은 소개용 데모이며, 실제 만세력 계산 로직은 포함하지 않습니다.`;
+
+      $("result").textContent = msg;
+    }
+
+    function resetAll(){
+      $("name").value = "";
+      $("birth").value = "";
+      $("time").value = "unknown";
+      $("result").textContent = "입력 후 “요약 만들기”를 누르면 소개 문구가 표시됩니다.";
+    }
+
+    $("btnMake").addEventListener("click", makeSummary);
+    $("btnReset").addEventListener("click", resetAll);
+    $("btnScrollHow").addEventListener("click", () => {
+      document.querySelector("#how").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    $("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
