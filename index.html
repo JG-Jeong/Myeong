@@ -261,6 +261,46 @@
       background: rgba(255,255,255,.04); padding: 14px; color: var(--dim);
       line-height: 1.7; font-size: 14px; min-height: 64px;
     }
+    .report{
+      display:grid;
+      gap: 12px;
+    }
+    .reportGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+    @media (max-width: 520px){
+      .reportGrid{ grid-template-columns: 1fr; }
+    }
+    .reportBlock{
+      border: 1px solid rgba(242,241,236,.12);
+      border-radius: 12px;
+      padding: 12px;
+      background: rgba(0,0,0,.18);
+    }
+    .reportLabel{
+      font-size: 12px;
+      color: rgba(242,241,236,.6);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .reportValue{
+      font-size: 16px;
+      color: var(--ivory);
+      margin-top: 6px;
+      font-weight: 600;
+    }
+    .reportNote{
+      border-left: 2px solid rgba(242,241,236,.25);
+      padding-left: 12px;
+      color: var(--dim);
+      line-height: 1.75;
+      background: rgba(255,255,255,.02);
+      border-radius: 10px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
 
     .note{
       margin-top: 10px; font-size: 12px; color: rgba(242,241,236,.5);
@@ -466,7 +506,29 @@
         </form>
 
         <div class="result" id="result">
-          입력 후 “사주팔자 보기”를 누르면 결과가 표시됩니다.
+          <div class="report">
+            <div class="reportGrid">
+              <div class="reportBlock">
+                <div class="reportLabel">이름</div>
+                <div class="reportValue" id="rName">-</div>
+              </div>
+              <div class="reportBlock">
+                <div class="reportLabel">생년월일</div>
+                <div class="reportValue" id="rBirth">-</div>
+              </div>
+              <div class="reportBlock">
+                <div class="reportLabel">출생 시간</div>
+                <div class="reportValue" id="rTime">-</div>
+              </div>
+              <div class="reportBlock">
+                <div class="reportLabel">출생지</div>
+                <div class="reportValue" id="rPlace">-</div>
+              </div>
+            </div>
+            <div class="reportNote" id="rNote">
+              입력 후 “사주팔자 보기”를 누르면 관조의 문장이 표시됩니다.
+            </div>
+          </div>
         </div>
         <div class="note">※ 입력 정보는 브라우저 안에서만 사용됩니다.</div>
       </div>
@@ -548,22 +610,25 @@
         shen: "申(15-17)", you: "酉(17-19)", xu: "戌(19-21)", hai: "亥(21-23)"
       }[t] || "시간 미상";
 
-      const msg =
-`[Myeong 사주팔자]
-- 이름: ${name}
-- 생년월일: ${birthTxt}
-- 출생 시간: ${timeTxt}
-- 출생지: ${place}
-
-Myeong은 숫자의 결을 모아 조용히 흐름을 관찰합니다.
-당신의 리듬은 과장되지 않게, 정밀하게 기록됩니다.`;
-
-      $("result").textContent = msg;
+      $("rName").textContent = name;
+      $("rBirth").textContent = birthTxt;
+      $("rTime").textContent = timeTxt;
+      $("rPlace").textContent = place;
+      $("rNote").textContent =
+        "Myeong은 숫자의 결을 모아 조용히 흐름을 읽습니다. " +
+        "당신의 리듬은 고요하게 정리되어, 오늘의 결로 돌아옵니다.";
     }
 
     $("recordForm").addEventListener("submit", (e) => {
       e.preventDefault();
       makeSummary();
+    });
+    $("recordForm").addEventListener("reset", () => {
+      $("rName").textContent = "-";
+      $("rBirth").textContent = "-";
+      $("rTime").textContent = "-";
+      $("rPlace").textContent = "-";
+      $("rNote").textContent = "입력 후 “사주팔자 보기”를 누르면 관조의 문장이 표시됩니다.";
     });
 
     $("year").textContent = new Date().getFullYear();
