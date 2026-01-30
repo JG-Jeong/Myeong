@@ -81,6 +81,25 @@
     .nav{ display:flex; gap:14px; color: var(--dim); font-size: 14px; }
     .nav a{ padding: 8px 10px; border-radius: 999px; border: 1px solid transparent; }
     .nav a:hover{ border-color: var(--line); background: rgba(255,255,255,.04); color: var(--ivory); }
+    .langToggle{
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+    .langBtn{
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color: var(--dim);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    .langBtn.active{
+      color: var(--ivory);
+      border-color: rgba(242,241,236,.5);
+      background: rgba(255,255,255,.1);
+    }
 
     .hero{
       margin-top: 24px;
@@ -342,55 +361,59 @@
         <div class="seal">命</div>
         <div>
           <div style="font-size:14px; line-height:1.1;">Myeong</div>
-          <div class="mono" style="color: var(--dim);">Record of Life · Calm · Observant · Precise</div>
+          <div class="mono" style="color: var(--dim);" data-i18n="brand.tagline">Record of Life · Calm · Observant · Precise</div>
         </div>
       </div>
       <nav class="nav">
-        <a href="#about">소개</a>
-        <a href="#cat">고양이</a>
-        <a href="#quality">원칙</a>
-        <a href="#record">기록</a>
-        <a href="#faq">FAQ</a>
-        <a href="#privacy">개인정보</a>
+        <a href="#about" data-i18n="nav.about">소개</a>
+        <a href="#cat" data-i18n="nav.cat">고양이</a>
+        <a href="#quality" data-i18n="nav.quality">원칙</a>
+        <a href="#record" data-i18n="nav.record">기록</a>
+        <a href="#faq" data-i18n="nav.faq">FAQ</a>
+        <a href="#privacy" data-i18n="nav.privacy">개인정보</a>
       </nav>
+      <div class="langToggle" aria-label="Language toggle">
+        <button class="langBtn" type="button" data-lang="ko">KO</button>
+        <button class="langBtn" type="button" data-lang="en">EN</button>
+      </div>
     </header>
 
     <section class="hero" id="about">
       <div class="card">
         <div class="cardPad">
-          <div class="tag">Myeong (命)</div>
-          <h1 class="headline">생의 자취를 조용히 모으는<br/>관조의 고양이</h1>
-          <p class="sub">
+          <div class="tag" data-i18n="hero.tag">Myeong (命)</div>
+          <h1 class="headline" data-i18n-html="hero.title">생의 자취를 조용히 모으는<br/>관조의 고양이</h1>
+          <p class="sub" data-i18n="hero.sub">
             Myeong(명)은 생년월일과 시간의 파편을 기록해 흐름을 읽습니다.
             과장된 예언 대신, 고요한 관찰과 정밀한 정리로 당신의 리듬을 보여주는 존재.
             이 페이지는 명확한 목적과 절제된 표현을 갖춘 소개용 랜딩입니다.
           </p>
 
           <div class="pillRow">
-            <div class="pill"><strong>Calm</strong> 절제된 표정</div>
-            <div class="pill"><strong>Observant</strong> 얇은 시선</div>
-            <div class="pill"><strong>Precise</strong> 균일한 선</div>
-            <div class="pill">흑 · 백 · 남색</div>
+            <div class="pill" data-i18n-html="hero.pill1"><strong>Calm</strong> 절제된 표정</div>
+            <div class="pill" data-i18n-html="hero.pill2"><strong>Observant</strong> 얇은 시선</div>
+            <div class="pill" data-i18n-html="hero.pill3"><strong>Precise</strong> 균일한 선</div>
+            <div class="pill" data-i18n="hero.pill4">흑 · 백 · 남색</div>
           </div>
 
           <div class="ctaRow">
             <a class="btn primary" href="#record">
-              <span>명(命) 기록 시작</span>
-              <small>간단 입력</small>
+              <span data-i18n="hero.ctaPrimary">명(命) 기록 시작</span>
+              <small data-i18n="hero.ctaSub">간단 입력</small>
             </a>
-            <button class="btn" id="btnScrollCat" type="button">고양이 디자인 보기 →</button>
+            <button class="btn" id="btnScrollCat" type="button" data-i18n="hero.ctaSecondary">고양이 디자인 보기 →</button>
           </div>
         </div>
       </div>
 
       <aside class="card" id="cat">
         <div class="catFrame">
-          <img class="catImage" src="Myeow.png" alt="삿갓과 도포를 입은 고양이 이미지" />
-          <button class="myeongLink" id="btnMyeong" type="button" aria-label="사주팔자 페이지로 이동">命</button>
+          <img class="catImage" src="Myeow.png" alt="삿갓과 도포를 입은 고양이 이미지" data-i18n-alt="cat.alt" />
+          <button class="myeongLink" id="btnMyeong" type="button" aria-label="사주팔자 페이지로 이동" data-i18n-aria="cat.ctaAria">命</button>
         </div>
         <div class="cardPad">
-          <div class="sectionTitle" style="margin-top:0;">캐릭터 설계 요약</div>
-          <div class="promptBox">
+          <div class="sectionTitle" style="margin-top:0;" data-i18n="cat.title">캐릭터 설계 요약</div>
+          <div class="promptBox" data-i18n-html="cat.desc">
             고양이 + 삿갓 + 간결한 도포(한복 실루엣).<br/>
             표정은 무표정/관조적, 귀여움 과다 금지.<br/>
             흑/백/남색 중심, 부채 또는 두루마리 아이콘 소품.<br/>
@@ -400,86 +423,86 @@
       </aside>
     </section>
 
-    <h2 class="sectionTitle">Myeong이 모으는 것</h2>
+    <h2 class="sectionTitle" data-i18n="collect.title">Myeong이 모으는 것</h2>
     <section class="grid3">
       <div class="card item">
         <div class="cardPad">
-          <h3>1) 생년월일</h3>
-          <p>날짜의 리듬을 기록합니다. 숫자는 방향을 정하는 나침반이 됩니다.</p>
+          <h3 data-i18n="collect.item1.title">1) 생년월일</h3>
+          <p data-i18n="collect.item1.desc">날짜의 리듬을 기록합니다. 숫자는 방향을 정하는 나침반이 됩니다.</p>
         </div>
       </div>
       <div class="card item">
         <div class="cardPad">
-          <h3>2) 출생 시간</h3>
-          <p>시간의 결을 더해 관찰의 정밀도를 높입니다.</p>
+          <h3 data-i18n="collect.item2.title">2) 출생 시간</h3>
+          <p data-i18n="collect.item2.desc">시간의 결을 더해 관찰의 정밀도를 높입니다.</p>
         </div>
       </div>
       <div class="card item">
         <div class="cardPad">
-          <h3>3) 장소</h3>
-          <p>지리적 컨텍스트는 흐름의 뒷배경으로 기록됩니다.</p>
+          <h3 data-i18n="collect.item3.title">3) 장소</h3>
+          <p data-i18n="collect.item3.desc">지리적 컨텍스트는 흐름의 뒷배경으로 기록됩니다.</p>
         </div>
       </div>
     </section>
 
-    <h2 class="sectionTitle" id="quality">고품질 콘텐츠 원칙</h2>
+    <h2 class="sectionTitle" id="quality" data-i18n="quality.title">고품질 콘텐츠 원칙</h2>
     <section class="grid3">
       <div class="card item">
         <div class="cardPad">
-          <h3>독창성과 깊이</h3>
-          <p>짧은 문구 대신 의미 있는 설명과 맥락을 제공합니다. 얕은 요약·복제 콘텐츠는 배제합니다.</p>
+          <h3 data-i18n="quality.item1.title">독창성과 깊이</h3>
+          <p data-i18n="quality.item1.desc">짧은 문구 대신 의미 있는 설명과 맥락을 제공합니다. 얕은 요약·복제 콘텐츠는 배제합니다.</p>
         </div>
       </div>
       <div class="card item">
         <div class="cardPad">
-          <h3>명확한 목적</h3>
-          <p>무엇을 제공하는지 분명히 밝히고, 과장된 약속 없이 관찰과 기록에 집중합니다.</p>
+          <h3 data-i18n="quality.item2.title">명확한 목적</h3>
+          <p data-i18n="quality.item2.desc">무엇을 제공하는지 분명히 밝히고, 과장된 약속 없이 관찰과 기록에 집중합니다.</p>
         </div>
       </div>
       <div class="card item">
         <div class="cardPad">
-          <h3>탐색의 편의성</h3>
-          <p>간결한 구조와 명확한 내비게이션으로 원하는 정보를 쉽게 찾도록 설계합니다.</p>
+          <h3 data-i18n="quality.item3.title">탐색의 편의성</h3>
+          <p data-i18n="quality.item3.desc">간결한 구조와 명확한 내비게이션으로 원하는 정보를 쉽게 찾도록 설계합니다.</p>
         </div>
       </div>
     </section>
 
     <section class="card" style="margin-top:14px;">
       <div class="cardPad">
-        <div class="sectionTitle" style="margin-top:0;">서비스 안내</div>
-        <p class="rich">
+        <div class="sectionTitle" style="margin-top:0;" data-i18n="service.title">서비스 안내</div>
+        <p class="rich" data-i18n="service.desc">
           Myeong은 입력 정보를 기반으로 삶의 흐름을 정리하는 텍스트를 제공합니다.
           결과는 참고용이며, 의료·법률·금융 의사결정을 대신하지 않습니다.
         </p>
         <ul class="list">
-          <li>입력: 이름(선택), 생년월일, 출생 시간, 출생지</li>
-          <li>목적: 관조적 기록/정리 문장 제공</li>
-          <li>형식: 요약 텍스트(과장된 예언 금지)</li>
+          <li data-i18n="service.li1">입력: 이름(선택), 생년월일, 출생 시간, 출생지</li>
+          <li data-i18n="service.li2">목적: 관조적 기록/정리 문장 제공</li>
+          <li data-i18n="service.li3">형식: 요약 텍스트(과장된 예언 금지)</li>
         </ul>
       </div>
     </section>
 
-    <h2 class="sectionTitle" id="record">명(命) 기록</h2>
+    <h2 class="sectionTitle" id="record" data-i18n="record.title">명(命) 기록</h2>
     <section class="card">
       <div class="cardPad">
-        <p class="sub" style="margin-bottom:10px;">
+        <p class="sub" style="margin-bottom:10px;" data-i18n="record.sub">
           Myeong은 입력 정보를 바탕으로 관조형 문장을 즉시 보여줍니다.
           전송 없이, 화면에서 바로 확인하세요.
         </p>
 
         <form class="formRow" id="recordForm">
           <div class="field">
-            <label for="name">이름</label>
-            <input id="name" name="name" placeholder="예: 정명" />
+            <label for="name" data-i18n="form.name">이름</label>
+            <input id="name" name="name" placeholder="예: 정명" data-i18n-placeholder="form.namePh" />
           </div>
           <div class="field">
-            <label for="birth">생년월일</label>
+            <label for="birth" data-i18n="form.birth">생년월일</label>
             <input id="birth" name="birth" type="date" required />
           </div>
           <div class="field">
-            <label for="time">출생 시간</label>
+            <label for="time" data-i18n="form.time">출생 시간</label>
             <select id="time" name="birth_time" required>
-              <option value="unknown">모름</option>
+              <option value="unknown" data-i18n="form.timeUnknown">모름</option>
               <option value="ja">子 (23-01)</option>
               <option value="chou">丑 (01-03)</option>
               <option value="yin">寅 (03-05)</option>
@@ -495,13 +518,13 @@
             </select>
           </div>
           <div class="field">
-            <label for="place">출생지(도시)</label>
-            <input id="place" name="birth_place" placeholder="예: Seoul" required />
+            <label for="place" data-i18n="form.place">출생지(도시)</label>
+            <input id="place" name="birth_place" placeholder="예: Seoul" data-i18n-placeholder="form.placePh" required />
           </div>
 
           <div class="ctaRow" style="margin-top:12px;">
-            <button class="btn primary" type="submit">사주팔자 보기</button>
-            <button class="btn" type="reset">초기화</button>
+            <button class="btn primary" type="submit" data-i18n="form.submit">사주팔자 보기</button>
+            <button class="btn" type="reset" data-i18n="form.reset">초기화</button>
           </div>
         </form>
 
@@ -509,79 +532,275 @@
           <div class="report">
             <div class="reportGrid">
               <div class="reportBlock">
-                <div class="reportLabel">이름</div>
+                <div class="reportLabel" data-i18n="report.name">이름</div>
                 <div class="reportValue" id="rName">-</div>
               </div>
               <div class="reportBlock">
-                <div class="reportLabel">생년월일</div>
+                <div class="reportLabel" data-i18n="report.birth">생년월일</div>
                 <div class="reportValue" id="rBirth">-</div>
               </div>
               <div class="reportBlock">
-                <div class="reportLabel">출생 시간</div>
+                <div class="reportLabel" data-i18n="report.time">출생 시간</div>
                 <div class="reportValue" id="rTime">-</div>
               </div>
               <div class="reportBlock">
-                <div class="reportLabel">출생지</div>
+                <div class="reportLabel" data-i18n="report.place">출생지</div>
                 <div class="reportValue" id="rPlace">-</div>
               </div>
             </div>
-            <div class="reportNote" id="rNote">
+            <div class="reportNote" id="rNote" data-i18n="report.note">
               입력 후 “사주팔자 보기”를 누르면 관조의 문장이 표시됩니다.
             </div>
           </div>
         </div>
-        <div class="note">※ 입력 정보는 브라우저 안에서만 사용됩니다.</div>
+        <div class="note" data-i18n="record.note">※ 입력 정보는 브라우저 안에서만 사용됩니다.</div>
       </div>
     </section>
 
-    <h2 class="sectionTitle" id="faq">FAQ</h2>
+    <h2 class="sectionTitle" id="faq" data-i18n="faq.title">FAQ</h2>
     <section class="card">
       <div class="cardPad">
         <div class="qa">
           <div class="qaItem">
-            <b>Q. 어떤 결과를 받게 되나요?</b>
-            <div class="rich">입력 정보를 바탕으로 정리된 관조형 텍스트를 받습니다. 예언이나 단정적 판단은 포함하지 않습니다.</div>
+            <b data-i18n="faq.q1.q">Q. 어떤 결과를 받게 되나요?</b>
+            <div class="rich" data-i18n="faq.q1.a">입력 정보를 바탕으로 정리된 관조형 텍스트를 받습니다. 예언이나 단정적 판단은 포함하지 않습니다.</div>
           </div>
           <div class="qaItem">
-            <b>Q. 정확도를 보장하나요?</b>
-            <div class="rich">보장하지 않습니다. 본 서비스는 참고용 기록/정리 도구입니다.</div>
+            <b data-i18n="faq.q2.q">Q. 정확도를 보장하나요?</b>
+            <div class="rich" data-i18n="faq.q2.a">보장하지 않습니다. 본 서비스는 참고용 기록/정리 도구입니다.</div>
           </div>
           <div class="qaItem">
-            <b>Q. 데이터를 어디에 저장하나요?</b>
-            <div class="rich">데이터는 브라우저 안에서만 사용되며 전송되지 않습니다. 자세한 내용은 개인정보 섹션을 확인하세요.</div>
+            <b data-i18n="faq.q3.q">Q. 데이터를 어디에 저장하나요?</b>
+            <div class="rich" data-i18n="faq.q3.a">데이터는 브라우저 안에서만 사용되며 전송되지 않습니다. 자세한 내용은 개인정보 섹션을 확인하세요.</div>
           </div>
         </div>
       </div>
     </section>
 
-    <h2 class="sectionTitle" id="privacy">개인정보 처리방침(요약)</h2>
+    <h2 class="sectionTitle" id="privacy" data-i18n="privacy.title">개인정보 처리방침(요약)</h2>
     <section class="card">
       <div class="cardPad">
-        <p class="rich">
+        <p class="rich" data-i18n="privacy.desc">
           Myeong은 서비스 제공을 위해 최소한의 정보를 수집합니다. 아래는 요약 안내이며,
           요청 시 보다 상세한 안내를 제공합니다.
         </p>
         <ul class="list">
-          <li>수집 항목: 이름(선택), 생년월일, 출생 시간, 출생지</li>
-          <li>이용 목적: 관조형 기록 텍스트 제공 및 요청 처리</li>
-          <li>처리 방식: 브라우저 내 즉시 처리(전송 없음)</li>
-          <li>보관 기간: 별도 저장하지 않음</li>
-          <li>광고/쿠키: Google AdSense 등 제3자 광고가 쿠키를 사용할 수 있습니다.</li>
+          <li data-i18n="privacy.li1">수집 항목: 이름(선택), 생년월일, 출생 시간, 출생지</li>
+          <li data-i18n="privacy.li2">이용 목적: 관조형 기록 텍스트 제공 및 요청 처리</li>
+          <li data-i18n="privacy.li3">처리 방식: 브라우저 내 즉시 처리(전송 없음)</li>
+          <li data-i18n="privacy.li4">보관 기간: 별도 저장하지 않음</li>
+          <li data-i18n="privacy.li5">광고/쿠키: Google AdSense 등 제3자 광고가 쿠키를 사용할 수 있습니다.</li>
         </ul>
-        <p class="rich" style="margin-top:10px;">
+        <p class="rich" style="margin-top:10px;" data-i18n="privacy.note">
           의료·법률·금융 관련 조언을 제공하지 않으며, 모든 결과는 참고용입니다.
         </p>
       </div>
     </section>
 
     <footer>
-      <div class="tagline">命 · Calm · Observant · Precise</div>
-      <div>© <span id="year"></span> Myeong. Mystic landing page.</div>
+      <div class="tagline" data-i18n="footer.tagline">命 · Calm · Observant · Precise</div>
+      <div data-i18n-html="footer.copy">© <span id="year"></span> Myeong. Mystic landing page.</div>
     </footer>
   </div>
 
   <script>
     const $ = (id) => document.getElementById(id);
+    const translations = {
+      ko: {
+        "brand.tagline": "Record of Life · Calm · Observant · Precise",
+        "nav.about": "소개",
+        "nav.cat": "고양이",
+        "nav.quality": "원칙",
+        "nav.record": "기록",
+        "nav.faq": "FAQ",
+        "nav.privacy": "개인정보",
+        "hero.tag": "Myeong (命)",
+        "hero.title": "생의 자취를 조용히 모으는<br/>관조의 고양이",
+        "hero.sub": "Myeong(명)은 생년월일과 시간의 파편을 기록해 흐름을 읽습니다. 과장된 예언 대신, 고요한 관찰과 정밀한 정리로 당신의 리듬을 보여주는 존재. 이 페이지는 명확한 목적과 절제된 표현을 갖춘 소개용 랜딩입니다.",
+        "hero.pill1": "<strong>Calm</strong> 절제된 표정",
+        "hero.pill2": "<strong>Observant</strong> 얇은 시선",
+        "hero.pill3": "<strong>Precise</strong> 균일한 선",
+        "hero.pill4": "흑 · 백 · 남색",
+        "hero.ctaPrimary": "명(命) 기록 시작",
+        "hero.ctaSub": "간단 입력",
+        "hero.ctaSecondary": "고양이 디자인 보기 →",
+        "cat.title": "캐릭터 설계 요약",
+        "cat.desc": "고양이 + 삿갓 + 간결한 도포(한복 실루엣).<br/>표정은 무표정/관조적, 귀여움 과다 금지.<br/>흑/백/남색 중심, 부채 또는 두루마리 아이콘 소품.<br/>성격 키워드: Calm, Observant, Precise.",
+        "cat.alt": "삿갓과 도포를 입은 고양이 이미지",
+        "cat.ctaAria": "사주팔자 페이지로 이동",
+        "collect.title": "Myeong이 모으는 것",
+        "collect.item1.title": "1) 생년월일",
+        "collect.item1.desc": "날짜의 리듬을 기록합니다. 숫자는 방향을 정하는 나침반이 됩니다.",
+        "collect.item2.title": "2) 출생 시간",
+        "collect.item2.desc": "시간의 결을 더해 관찰의 정밀도를 높입니다.",
+        "collect.item3.title": "3) 장소",
+        "collect.item3.desc": "지리적 컨텍스트는 흐름의 뒷배경으로 기록됩니다.",
+        "quality.title": "고품질 콘텐츠 원칙",
+        "quality.item1.title": "독창성과 깊이",
+        "quality.item1.desc": "짧은 문구 대신 의미 있는 설명과 맥락을 제공합니다. 얕은 요약·복제 콘텐츠는 배제합니다.",
+        "quality.item2.title": "명확한 목적",
+        "quality.item2.desc": "무엇을 제공하는지 분명히 밝히고, 과장된 약속 없이 관찰과 기록에 집중합니다.",
+        "quality.item3.title": "탐색의 편의성",
+        "quality.item3.desc": "간결한 구조와 명확한 내비게이션으로 원하는 정보를 쉽게 찾도록 설계합니다.",
+        "service.title": "서비스 안내",
+        "service.desc": "Myeong은 입력 정보를 기반으로 삶의 흐름을 정리하는 텍스트를 제공합니다. 결과는 참고용이며, 의료·법률·금융 의사결정을 대신하지 않습니다.",
+        "service.li1": "입력: 이름(선택), 생년월일, 출생 시간, 출생지",
+        "service.li2": "목적: 관조적 기록/정리 문장 제공",
+        "service.li3": "형식: 요약 텍스트(과장된 예언 금지)",
+        "record.title": "명(命) 기록",
+        "record.sub": "Myeong은 입력 정보를 바탕으로 관조형 문장을 즉시 보여줍니다. 전송 없이, 화면에서 바로 확인하세요.",
+        "record.note": "※ 입력 정보는 브라우저 안에서만 사용됩니다.",
+        "form.name": "이름",
+        "form.namePh": "예: 정명",
+        "form.birth": "생년월일",
+        "form.time": "출생 시간",
+        "form.timeUnknown": "모름",
+        "form.place": "출생지(도시)",
+        "form.placePh": "예: Seoul",
+        "form.submit": "사주팔자 보기",
+        "form.reset": "초기화",
+        "report.name": "이름",
+        "report.birth": "생년월일",
+        "report.time": "출생 시간",
+        "report.place": "출생지",
+        "report.note": "입력 후 “사주팔자 보기”를 누르면 관조의 문장이 표시됩니다.",
+        "report.nameDefault": "당신",
+        "report.noteAfter": "Myeong은 숫자의 결을 모아 조용히 흐름을 읽습니다. 당신의 리듬은 고요하게 정리되어, 오늘의 결로 돌아옵니다.",
+        "report.birthMissing": "생년월일 미입력",
+        "report.placeMissing": "미기록",
+        "faq.title": "FAQ",
+        "faq.q1.q": "Q. 어떤 결과를 받게 되나요?",
+        "faq.q1.a": "입력 정보를 바탕으로 정리된 관조형 텍스트를 받습니다. 예언이나 단정적 판단은 포함하지 않습니다.",
+        "faq.q2.q": "Q. 정확도를 보장하나요?",
+        "faq.q2.a": "보장하지 않습니다. 본 서비스는 참고용 기록/정리 도구입니다.",
+        "faq.q3.q": "Q. 데이터를 어디에 저장하나요?",
+        "faq.q3.a": "데이터는 브라우저 안에서만 사용되며 전송되지 않습니다. 자세한 내용은 개인정보 섹션을 확인하세요.",
+        "privacy.title": "개인정보 처리방침(요약)",
+        "privacy.desc": "Myeong은 서비스 제공을 위해 최소한의 정보를 수집합니다. 아래는 요약 안내이며, 요청 시 보다 상세한 안내를 제공합니다.",
+        "privacy.li1": "수집 항목: 이름(선택), 생년월일, 출생 시간, 출생지",
+        "privacy.li2": "이용 목적: 관조형 기록 텍스트 제공 및 요청 처리",
+        "privacy.li3": "처리 방식: 브라우저 내 즉시 처리(전송 없음)",
+        "privacy.li4": "보관 기간: 별도 저장하지 않음",
+        "privacy.li5": "광고/쿠키: Google AdSense 등 제3자 광고가 쿠키를 사용할 수 있습니다.",
+        "privacy.note": "의료·법률·금융 관련 조언을 제공하지 않으며, 모든 결과는 참고용입니다.",
+        "footer.tagline": "命 · Calm · Observant · Precise",
+        "footer.copy": "© <span id=\"year\"></span> Myeong. Mystic landing page."
+      },
+      en: {
+        "brand.tagline": "Record of Life · Calm · Observant · Precise",
+        "nav.about": "About",
+        "nav.cat": "Cat",
+        "nav.quality": "Principles",
+        "nav.record": "Record",
+        "nav.faq": "FAQ",
+        "nav.privacy": "Privacy",
+        "hero.tag": "Myeong (命)",
+        "hero.title": "A quiet observer<br/>who gathers life’s traces",
+        "hero.sub": "Myeong records fragments of birth date and time to read the flow. Instead of grand prophecies, it presents your rhythm with calm observation and precise organization. This page is a focused, restrained introduction.",
+        "hero.pill1": "<strong>Calm</strong> restrained expression",
+        "hero.pill2": "<strong>Observant</strong> narrow gaze",
+        "hero.pill3": "<strong>Precise</strong> even lines",
+        "hero.pill4": "Black · White · Navy",
+        "hero.ctaPrimary": "Start the Record",
+        "hero.ctaSub": "Quick input",
+        "hero.ctaSecondary": "View the character →",
+        "cat.title": "Character Summary",
+        "cat.desc": "Cat + bamboo hat + minimal hanbok silhouette.<br/>Expression stays neutral and observant.<br/>Palette: black/white/navy, with fan or scroll icon.<br/>Keywords: Calm, Observant, Precise.",
+        "cat.alt": "Cat wearing a bamboo hat and robe",
+        "cat.ctaAria": "Go to the Saju record page",
+        "collect.title": "What Myeong Gathers",
+        "collect.item1.title": "1) Date of Birth",
+        "collect.item1.desc": "Records the rhythm of dates. Numbers become a compass for direction.",
+        "collect.item2.title": "2) Time of Birth",
+        "collect.item2.desc": "Adds time’s texture for greater observational precision.",
+        "collect.item3.title": "3) Place",
+        "collect.item3.desc": "Geographic context becomes the backdrop of the flow.",
+        "quality.title": "High-Quality Content Principles",
+        "quality.item1.title": "Originality & Depth",
+        "quality.item1.desc": "We provide meaningful context instead of shallow summaries or copied content.",
+        "quality.item2.title": "Clear Purpose",
+        "quality.item2.desc": "We state what we provide and focus on observation and record, not exaggeration.",
+        "quality.item3.title": "Easy Navigation",
+        "quality.item3.desc": "A concise structure helps visitors find what they need quickly.",
+        "service.title": "Service Overview",
+        "service.desc": "Myeong provides a concise text that organizes the flow of life based on your inputs. Results are for reference only and do not replace medical, legal, or financial decisions.",
+        "service.li1": "Input: name (optional), date of birth, time of birth, place of birth",
+        "service.li2": "Purpose: contemplative record/summary text",
+        "service.li3": "Format: brief narrative (no exaggerated prophecy)",
+        "record.title": "Myeong Record",
+        "record.sub": "Myeong shows a contemplative narrative immediately from your input. No submission—view it right on screen.",
+        "record.note": "※ Inputs are used only within your browser.",
+        "form.name": "Name",
+        "form.namePh": "e.g. Myeong",
+        "form.birth": "Date of birth",
+        "form.time": "Time of birth",
+        "form.timeUnknown": "Unknown",
+        "form.place": "Place of birth (city)",
+        "form.placePh": "e.g. Seoul",
+        "form.submit": "View Saju",
+        "form.reset": "Reset",
+        "report.name": "Name",
+        "report.birth": "Date of birth",
+        "report.time": "Time of birth",
+        "report.place": "Place",
+        "report.note": "Submit to see a contemplative narrative.",
+        "report.nameDefault": "You",
+        "report.noteAfter": "Myeong reads the grain of numbers in silence. Your rhythm returns as a quiet, precise trace.",
+        "report.birthMissing": "Not provided",
+        "report.placeMissing": "Not provided",
+        "faq.title": "FAQ",
+        "faq.q1.q": "Q. What kind of result do I get?",
+        "faq.q1.a": "You receive a contemplative summary based on your inputs. No prophecies or hard claims.",
+        "faq.q2.q": "Q. Do you guarantee accuracy?",
+        "faq.q2.a": "No. This is a reference-style record and summary tool.",
+        "faq.q3.q": "Q. Where is my data stored?",
+        "faq.q3.a": "Your data stays in the browser and is not transmitted. See the privacy section for details.",
+        "privacy.title": "Privacy (Summary)",
+        "privacy.desc": "Myeong collects the minimum information needed to provide the service. This is a summary; detailed information can be provided upon request.",
+        "privacy.li1": "Data: name (optional), date of birth, time of birth, place of birth",
+        "privacy.li2": "Purpose: provide a contemplative record and process your request",
+        "privacy.li3": "Processing: in-browser only (no transmission)",
+        "privacy.li4": "Retention: not stored",
+        "privacy.li5": "Ads/Cookies: third-party ads like Google AdSense may use cookies.",
+        "privacy.note": "We do not provide medical, legal, or financial advice. All results are for reference.",
+        "footer.tagline": "命 · Calm · Observant · Precise",
+        "footer.copy": "© <span id=\"year\"></span> Myeong. Mystic landing page."
+      }
+    };
+    let currentLang = localStorage.getItem("myeongLang") ||
+      (((navigator.language || "ko").startsWith("ko")) ? "ko" : "en");
+
+    function t(key){
+      return (translations[currentLang] && translations[currentLang][key]) || key;
+    }
+
+    function applyLang(lang){
+      currentLang = translations[lang] ? lang : "ko";
+      localStorage.setItem("myeongLang", currentLang);
+      document.documentElement.lang = currentLang;
+
+      document.querySelectorAll("[data-i18n]").forEach((el) => {
+        el.textContent = t(el.getAttribute("data-i18n"));
+      });
+      document.querySelectorAll("[data-i18n-html]").forEach((el) => {
+        el.innerHTML = t(el.getAttribute("data-i18n-html"));
+      });
+      document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+        el.setAttribute("placeholder", t(el.getAttribute("data-i18n-placeholder")));
+      });
+      document.querySelectorAll("[data-i18n-aria]").forEach((el) => {
+        el.setAttribute("aria-label", t(el.getAttribute("data-i18n-aria")));
+      });
+      document.querySelectorAll("[data-i18n-alt]").forEach((el) => {
+        el.setAttribute("alt", t(el.getAttribute("data-i18n-alt")));
+      });
+
+      document.querySelectorAll(".langBtn").forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.lang === currentLang);
+      });
+      const hasResult = $("rName").textContent.trim() !== "-" || $("rBirth").textContent.trim() !== "-";
+      $("rNote").textContent = hasResult ? t("report.noteAfter") : t("report.note");
+    }
 
     $("btnScrollCat").addEventListener("click", () => {
       document.querySelector("#cat").scrollIntoView({ behavior: "smooth", block: "start" });
@@ -597,26 +816,18 @@
     }
 
     function makeSummary(){
-      const name = $("name").value.trim() || "당신";
+      const name = $("name").value.trim() || t("report.nameDefault");
       const birth = $("birth").value;
-      const t = $("time").value;
-      const place = $("place").value.trim() || "미기록";
+      const place = $("place").value.trim() || t("report.placeMissing");
 
-      const birthTxt = birth ? formatDate(birth) : "생년월일 미입력";
-      const timeTxt = {
-        unknown: "시간 미상",
-        ja: "子(23-01)", chou: "丑(01-03)", yin: "寅(03-05)", mao: "卯(05-07)",
-        chen: "辰(07-09)", si: "巳(09-11)", wu: "午(11-13)", wei: "未(13-15)",
-        shen: "申(15-17)", you: "酉(17-19)", xu: "戌(19-21)", hai: "亥(21-23)"
-      }[t] || "시간 미상";
+      const birthTxt = birth ? formatDate(birth) : t("report.birthMissing");
+      const timeTxt = $("time").selectedOptions[0].textContent || t("form.timeUnknown");
 
       $("rName").textContent = name;
       $("rBirth").textContent = birthTxt;
       $("rTime").textContent = timeTxt;
       $("rPlace").textContent = place;
-      $("rNote").textContent =
-        "Myeong은 숫자의 결을 모아 조용히 흐름을 읽습니다. " +
-        "당신의 리듬은 고요하게 정리되어, 오늘의 결로 돌아옵니다.";
+      $("rNote").textContent = t("report.noteAfter");
     }
 
     $("recordForm").addEventListener("submit", (e) => {
@@ -628,8 +839,13 @@
       $("rBirth").textContent = "-";
       $("rTime").textContent = "-";
       $("rPlace").textContent = "-";
-      $("rNote").textContent = "입력 후 “사주팔자 보기”를 누르면 관조의 문장이 표시됩니다.";
+      $("rNote").textContent = t("report.note");
     });
+
+    document.querySelectorAll(".langBtn").forEach((btn) => {
+      btn.addEventListener("click", () => applyLang(btn.dataset.lang));
+    });
+    applyLang(currentLang);
 
     $("year").textContent = new Date().getFullYear();
   </script>
