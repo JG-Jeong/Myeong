@@ -3,23 +3,23 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>사주팔자 | 당신의 사주를 읽다</title>
-  <meta name="description" content="사주팔자(四柱八字) 소개 페이지. 사주란 무엇인지, 어떤 정보를 제공하는지 간단히 안내합니다." />
+  <title>Myeong(명) — 생의 기록을 모으는 고양이</title>
+  <meta name="description" content="Myeong(명): 생년월일과 시간을 기록해 삶의 리듬을 관조하는 신비한 고양이 콘셉트 페이지." />
   <style>
     :root{
-      --bg: #0b0a09;
-      --panel: rgba(255,255,255,.06);
-      --panel2: rgba(255,255,255,.10);
-      --text: rgba(255,255,255,.90);
-      --muted: rgba(255,255,255,.65);
-      --line: rgba(255,255,255,.14);
-      --gold: #d7b56d;
-      --red: #b5462e;
-      --shadow: 0 18px 45px rgba(0,0,0,.45);
-      --radius: 16px;
-      --maxw: 1080px;
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      --sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", Arial, sans-serif;
+      --ink: #0b0d12;
+      --navy: #121a2b;
+      --deep: #0f1624;
+      --ivory: #f2f1ec;
+      --mist: rgba(242,241,236,.75);
+      --line: rgba(242,241,236,.16);
+      --dim: rgba(242,241,236,.55);
+      --glow: rgba(217,224,255,.18);
+      --shadow: 0 26px 60px rgba(0,0,0,.45);
+      --radius: 18px;
+      --maxw: 1120px;
+      --serif: "Song Myung", "Noto Serif KR", "Nanum Myeongjo", serif;
+      --sans: "S-Core Dream", "Pretendard", "Noto Sans KR", system-ui, sans-serif;
     }
 
     *{ box-sizing:border-box; }
@@ -27,47 +27,62 @@
     body{
       margin:0;
       font-family: var(--sans);
-      color: var(--text);
+      color: var(--ivory);
       background:
-        radial-gradient(1200px 700px at 20% 0%, rgba(215,181,109,.20), transparent 60%),
-        radial-gradient(900px 600px at 80% 10%, rgba(181,70,46,.18), transparent 55%),
-        radial-gradient(900px 900px at 50% 120%, rgba(255,255,255,.06), transparent 60%),
-        var(--bg);
+        radial-gradient(900px 520px at 20% 0%, rgba(217,224,255,.15), transparent 60%),
+        radial-gradient(900px 520px at 80% 10%, rgba(255,255,255,.06), transparent 60%),
+        radial-gradient(900px 700px at 50% 120%, rgba(18,26,43,.8), transparent 70%),
+        var(--ink);
       letter-spacing: -0.2px;
+      overflow-x: hidden;
+    }
+
+    body::before{
+      content:"";
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 10% 20%, rgba(242,241,236,.35), transparent 55%),
+        radial-gradient(1px 1px at 80% 30%, rgba(242,241,236,.25), transparent 55%),
+        radial-gradient(1px 1px at 35% 70%, rgba(242,241,236,.22), transparent 55%),
+        radial-gradient(1px 1px at 60% 80%, rgba(242,241,236,.28), transparent 55%),
+        radial-gradient(1px 1px at 25% 45%, rgba(242,241,236,.2), transparent 55%);
+      opacity: .6;
+      pointer-events: none;
+      animation: drift 24s linear infinite;
+    }
+
+    @keyframes drift{
+      0%{ transform: translateY(0); }
+      50%{ transform: translateY(12px); }
+      100%{ transform: translateY(0); }
     }
 
     a{ color:inherit; text-decoration:none; }
-    .wrap{ max-width: var(--maxw); margin:0 auto; padding: 28px 18px 70px; }
+    .wrap{ max-width: var(--maxw); margin:0 auto; padding: 28px 18px 80px; }
 
-    /* Top bar */
     .top{
       display:flex; align-items:center; justify-content:space-between;
       gap:12px; padding: 14px 16px; border: 1px solid var(--line);
-      border-radius: 999px; background: rgba(0,0,0,.22); backdrop-filter: blur(8px);
+      border-radius: 999px; background: rgba(5,8,14,.62); backdrop-filter: blur(10px);
       box-shadow: var(--shadow);
     }
-    .brand{
-      display:flex; align-items:center; gap:10px;
-      font-weight: 700;
-    }
+    .brand{ display:flex; align-items:center; gap:10px; font-weight: 700; }
     .seal{
       width:34px; height:34px; border-radius: 10px;
-      background: linear-gradient(135deg, rgba(215,181,109,.95), rgba(181,70,46,.9));
+      background: linear-gradient(135deg, rgba(242,241,236,.9), rgba(242,241,236,.4));
       display:grid; place-items:center;
-      color: #120f0a;
-      font-family: var(--mono);
-      font-weight: 900;
+      color: #0b0d12; font-family: var(--serif); font-weight: 900;
       box-shadow: 0 10px 25px rgba(0,0,0,.35);
     }
-    .nav{ display:flex; gap:14px; color: var(--muted); font-size: 14px; }
+    .nav{ display:flex; gap:14px; color: var(--dim); font-size: 14px; }
     .nav a{ padding: 8px 10px; border-radius: 999px; border: 1px solid transparent; }
-    .nav a:hover{ border-color: var(--line); background: rgba(255,255,255,.04); color: var(--text); }
+    .nav a:hover{ border-color: var(--line); background: rgba(255,255,255,.04); color: var(--ivory); }
 
-    /* Hero */
     .hero{
-      margin-top: 22px;
+      margin-top: 24px;
       display:grid;
-      grid-template-columns: 1.15fr .85fr;
+      grid-template-columns: 1.1fr .9fr;
       gap: 18px;
       align-items: stretch;
     }
@@ -77,8 +92,8 @@
 
     .card{
       border:1px solid var(--line);
-      background: rgba(0,0,0,.24);
-      backdrop-filter: blur(10px);
+      background: rgba(5,8,14,.7);
+      backdrop-filter: blur(12px);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       overflow:hidden;
@@ -87,143 +102,109 @@
 
     .headline{
       font-size: 44px;
-      line-height: 1.05;
+      line-height: 1.06;
       margin: 0 0 14px;
       letter-spacing: -1px;
+      font-family: var(--serif);
     }
-    @media (max-width: 520px){ .headline{ font-size: 36px; } }
+    @media (max-width: 520px){ .headline{ font-size: 34px; } }
 
     .sub{
       margin:0 0 18px;
-      color: var(--muted);
+      color: var(--dim);
       font-size: 16px;
-      line-height: 1.7;
+      line-height: 1.75;
       max-width: 60ch;
     }
 
     .pillRow{ display:flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
     .pill{
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.04);
-      font-size: 13px;
-      color: var(--muted);
+      padding: 8px 12px; border-radius: 999px; border: 1px solid var(--line);
+      background: rgba(255,255,255,.03); font-size: 13px; color: var(--dim);
     }
-    .pill strong{ color: var(--text); font-weight: 650; }
+    .pill strong{ color: var(--ivory); font-weight: 650; }
 
     .ctaRow{ display:flex; flex-wrap:wrap; gap: 10px; margin-top: 20px; }
     .btn{
-      border-radius: 12px;
-      border: 1px solid var(--line);
-      padding: 12px 14px;
-      background: rgba(255,255,255,.06);
-      color: var(--text);
-      font-weight: 650;
-      cursor:pointer;
+      border-radius: 12px; border: 1px solid var(--line); padding: 12px 14px;
+      background: rgba(255,255,255,.06); color: var(--ivory);
+      font-weight: 650; cursor:pointer; display:inline-flex; align-items:center; gap:10px;
       transition: transform .08s ease, background .2s ease, border-color .2s ease;
-      display:inline-flex; align-items:center; gap:10px;
       user-select:none;
     }
-    .btn:hover{ background: rgba(255,255,255,.10); border-color: rgba(215,181,109,.45); }
+    .btn:hover{ background: rgba(255,255,255,.10); border-color: rgba(242,241,236,.45); }
     .btn:active{ transform: translateY(1px); }
     .btn.primary{
-      border-color: rgba(215,181,109,.55);
-      background: linear-gradient(135deg, rgba(215,181,109,.22), rgba(181,70,46,.16));
+      border-color: rgba(242,241,236,.55);
+      background: linear-gradient(135deg, rgba(242,241,236,.18), rgba(217,224,255,.12));
     }
-    .btn small{ color: var(--muted); font-weight: 500; }
+    .btn small{ color: var(--dim); font-weight: 500; }
 
-    /* Right panel */
-    .hanja{
-      font-size: 54px;
-      letter-spacing: 1px;
-      margin: 4px 0 10px;
-      font-family: "Noto Serif CJK KR", "Song Myung", "Batang", serif;
-      color: rgba(255,255,255,.92);
-    }
-    .stamp{
-      border-top: 1px dashed rgba(215,181,109,.35);
-      margin-top: 18px; padding-top: 16px;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.7;
-    }
-    .mono{
-      font-family: var(--mono);
-      font-size: 12px;
-      color: rgba(255,255,255,.55);
+    .catFrame{
+      display:grid; place-items:center; padding: 26px;
+      background:
+        radial-gradient(280px 180px at 50% 30%, rgba(217,224,255,.12), transparent 70%),
+        rgba(0,0,0,.12);
     }
 
-    /* Sections */
+    .tag{
+      font-size: 12px; color: var(--dim); text-transform: uppercase; letter-spacing: .3em;
+    }
+
+    .sectionTitle{
+      margin: 28px 0 10px;
+      font-size: 18px; color: rgba(242,241,236,.9);
+      letter-spacing: -.2px; font-family: var(--serif);
+    }
+
     .grid3{
-      margin-top: 18px;
+      margin-top: 16px;
       display:grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 14px;
     }
     @media (max-width: 920px){ .grid3{ grid-template-columns: 1fr; } }
 
-    .sectionTitle{
-      margin: 26px 0 10px;
-      font-size: 18px;
-      color: rgba(255,255,255,.90);
-      letter-spacing: -.2px;
-    }
-    .item h3{
-      margin: 0 0 8px;
-      font-size: 16px;
-    }
-    .item p{
-      margin:0;
-      color: var(--muted);
-      line-height: 1.7;
-      font-size: 14px;
-    }
+    .item h3{ margin: 0 0 8px; font-size: 16px; }
+    .item p{ margin:0; color: var(--dim); line-height: 1.7; font-size: 14px; }
 
-    /* Mini form */
     .formRow{ display:flex; flex-wrap:wrap; gap:10px; margin-top: 12px; }
-    .field{
-      flex: 1 1 180px;
-      display:flex; flex-direction:column; gap:6px;
-    }
-    label{ font-size: 12px; color: rgba(255,255,255,.65); }
+    .field{ flex: 1 1 190px; display:flex; flex-direction:column; gap:6px; }
+    label{ font-size: 12px; color: rgba(242,241,236,.65); }
     input, select{
-      padding: 12px 12px;
-      border-radius: 12px;
-      border: 1px solid var(--line);
-      background: rgba(0,0,0,.22);
-      color: var(--text);
-      outline: none;
+      padding: 12px 12px; border-radius: 12px; border: 1px solid var(--line);
+      background: rgba(0,0,0,.25); color: var(--ivory); outline: none;
     }
-    input:focus, select:focus{ border-color: rgba(215,181,109,.55); }
+    input:focus, select:focus{ border-color: rgba(242,241,236,.55); }
 
     .result{
-      margin-top: 12px;
-      border-radius: 14px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.04);
-      padding: 14px;
-      color: var(--muted);
-      line-height: 1.7;
-      font-size: 14px;
-      min-height: 64px;
+      margin-top: 12px; border-radius: 14px; border: 1px solid var(--line);
+      background: rgba(255,255,255,.04); padding: 14px; color: var(--dim);
+      line-height: 1.7; font-size: 14px; min-height: 64px;
+    }
+
+    .note{
+      margin-top: 10px; font-size: 12px; color: rgba(242,241,236,.5);
     }
 
     footer{
-      margin-top: 26px;
-      color: rgba(255,255,255,.45);
+      margin-top: 28px;
+      color: rgba(242,241,236,.45);
       font-size: 12px;
-      display:flex;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
+      display:flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
     }
     .tagline{
-      border: 1px solid rgba(255,255,255,.12);
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: rgba(0,0,0,.18);
+      border: 1px solid rgba(242,241,236,.12);
+      padding: 6px 10px; border-radius: 999px; background: rgba(0,0,0,.18);
     }
+
+    .promptBox{
+      border:1px dashed rgba(242,241,236,.22);
+      border-radius: 14px; padding: 14px; background: rgba(255,255,255,.03);
+      font-size: 13px; line-height: 1.7; color: var(--dim);
+    }
+
+    .mono{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
   </style>
 </head>
 <body>
@@ -232,116 +213,120 @@
       <div class="brand">
         <div class="seal">命</div>
         <div>
-          <div style="font-size:14px; line-height:1.1;">SajuPalsa</div>
-          <div class="mono">Four Pillars · Bazi · 사주팔자</div>
+          <div style="font-size:14px; line-height:1.1;">Myeong</div>
+          <div class="mono" style="color: var(--dim);">Record of Life · Calm · Observant · Precise</div>
         </div>
       </div>
       <nav class="nav">
         <a href="#about">소개</a>
-        <a href="#how">구성</a>
-        <a href="#try">간단 입력</a>
+        <a href="#cat">고양이</a>
+        <a href="#record">기록</a>
       </nav>
     </header>
 
     <section class="hero" id="about">
       <div class="card">
         <div class="cardPad">
-          <h1 class="headline">사주팔자(四柱八字),<br/>시간으로 읽는 인생의 구조</h1>
+          <div class="tag">Myeong (命)</div>
+          <h1 class="headline">생의 자취를 조용히 모으는<br/>관조의 고양이</h1>
           <p class="sub">
-            사주팔자는 태어난 <b>연·월·일·시</b>를 네 개의 기둥(四柱)로 보고,
-            그 안의 여덟 글자(八字)를 통해 성향, 균형, 흐름을 해석하는 동아시아 전통 분석 체계입니다.
-            이 페이지는 “사주가 뭔지”를 짧게 설명하는 소개용 랜딩입니다.
+            Myeong(명)은 생년월일과 시간의 파편을 기록해 흐름을 읽습니다.
+            과장된 예언 대신, 고요한 관찰과 정밀한 정리로 당신의 리듬을 보여주는 존재.
+            이 페이지는 그 컨셉을 위한 신비한 랜딩입니다.
           </p>
 
           <div class="pillRow">
-            <div class="pill"><strong>四柱</strong> 연·월·일·시</div>
-            <div class="pill"><strong>八字</strong> 천간·지지 조합</div>
-            <div class="pill"><strong>陰陽</strong> 균형/편중</div>
-            <div class="pill"><strong>五行</strong> 木火土金水</div>
+            <div class="pill"><strong>Calm</strong> 절제된 표정</div>
+            <div class="pill"><strong>Observant</strong> 얇은 시선</div>
+            <div class="pill"><strong>Precise</strong> 균일한 선</div>
+            <div class="pill">흑 · 백 · 남색</div>
           </div>
 
           <div class="ctaRow">
-            <a class="btn primary" href="#try">
-              <span>간단 입력 보기</span>
-              <small>데모</small>
+            <a class="btn primary" href="#record">
+              <span>명(命) 기록 시작</span>
+              <small>간단 입력</small>
             </a>
-            <button class="btn" id="btnScrollHow" type="button">
-              구성 설명 보기 →
-            </button>
+            <button class="btn" id="btnScrollCat" type="button">고양이 디자인 보기 →</button>
           </div>
         </div>
       </div>
 
-      <aside class="card">
+      <aside class="card" id="cat">
+        <div class="catFrame">
+          <svg width="260" height="260" viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="삿갓과 도포를 입은 고양이 아이콘">
+            <defs>
+              <linearGradient id="g1" x1="0" x2="1">
+                <stop offset="0" stop-color="#f2f1ec" stop-opacity=".85"/>
+                <stop offset="1" stop-color="#b9bec7" stop-opacity=".55"/>
+              </linearGradient>
+            </defs>
+            <circle cx="130" cy="140" r="84" fill="#0f1624" stroke="#f2f1ec" stroke-opacity=".2" />
+            <ellipse cx="130" cy="80" rx="96" ry="26" fill="#0b0d12" stroke="#f2f1ec" stroke-opacity=".25" />
+            <ellipse cx="130" cy="75" rx="62" ry="16" fill="#121a2b" />
+            <path d="M70 165 Q130 210 190 165" fill="#121a2b" stroke="#f2f1ec" stroke-opacity=".2" />
+            <path d="M100 135 Q130 150 160 135" fill="#0b0d12" />
+            <ellipse cx="104" cy="120" rx="16" ry="6" fill="none" stroke="#f2f1ec" stroke-opacity=".65" stroke-width="2" />
+            <ellipse cx="156" cy="120" rx="16" ry="6" fill="none" stroke="#f2f1ec" stroke-opacity=".65" stroke-width="2" />
+            <line x1="120" y1="145" x2="140" y2="145" stroke="#f2f1ec" stroke-opacity=".6" stroke-width="2" />
+            <path d="M70 170 Q130 210 190 170" fill="none" stroke="#f2f1ec" stroke-opacity=".25" stroke-width="2" />
+            <circle cx="210" cy="170" r="18" fill="none" stroke="url(#g1)" stroke-width="2" />
+            <line x1="210" y1="152" x2="210" y2="188" stroke="#f2f1ec" stroke-opacity=".5" stroke-width="2" />
+          </svg>
+        </div>
         <div class="cardPad">
-          <div class="hanja">四柱八字</div>
-          <div style="height:10px"></div>
-          <div class="pillRow">
-            <div class="pill">기와·한복·한자 감성 UI</div>
-            <div class="pill">전통 + 현대 카드형 레이아웃</div>
-            <div class="pill">모바일 최적화</div>
-          </div>
-
-          <div class="stamp">
-            <b style="color: rgba(215,181,109,.95);">포인트</b><br/>
-            “예언”이 아니라, <b>패턴과 균형을 읽는 해석</b>으로 설명하면 거부감이 줄고,
-            UX도 깔끔해집니다.
-            <div style="margin-top:10px" class="mono">
-              ※ 실제 사주 계산(만세력)은 이 데모에 포함하지 않았습니다.
-            </div>
+          <div class="sectionTitle" style="margin-top:0;">캐릭터 설계 요약</div>
+          <div class="promptBox">
+            고양이 + 삿갓 + 간결한 도포(한복 실루엣).<br/>
+            표정은 무표정/관조적, 귀여움 과다 금지.<br/>
+            흑/백/남색 중심, 부채 또는 두루마리 아이콘 소품.<br/>
+            성격 키워드: Calm, Observant, Precise.
           </div>
         </div>
       </aside>
     </section>
 
-    <h2 class="sectionTitle" id="how">사주팔자는 무엇을 봄?</h2>
+    <h2 class="sectionTitle">Myeong이 모으는 것</h2>
     <section class="grid3">
       <div class="card item">
         <div class="cardPad">
-          <h3>1) 구조(四柱)</h3>
-          <p>
-            태어난 연·월·일·시를 기반으로 기본 틀을 세웁니다.
-            이 틀은 해석의 “좌표계” 역할을 합니다.
-          </p>
+          <h3>1) 생년월일</h3>
+          <p>날짜의 리듬을 기록합니다. 숫자는 방향을 정하는 나침반이 됩니다.</p>
         </div>
       </div>
       <div class="card item">
         <div class="cardPad">
-          <h3>2) 균형(陰陽·五行)</h3>
-          <p>
-            기운의 균형과 편중을 보며, 과/부족이 어떤 성향과 선택 패턴으로 나타나는지 해석합니다.
-          </p>
+          <h3>2) 출생 시간</h3>
+          <p>시간의 결을 더해 관찰의 정밀도를 높입니다.</p>
         </div>
       </div>
       <div class="card item">
         <div class="cardPad">
-          <h3>3) 흐름(대운·세운)</h3>
-          <p>
-            시간 축에서 변화 구간을 보고, 어떤 시기에 무엇이 강조되는지 “트렌드”로 읽습니다.
-          </p>
+          <h3>3) 장소</h3>
+          <p>지리적 컨텍스트는 흐름의 뒷배경으로 기록됩니다.</p>
         </div>
       </div>
     </section>
 
-    <h2 class="sectionTitle" id="try">간단 입력(소개용 데모)</h2>
+    <h2 class="sectionTitle" id="record">명(命) 기록</h2>
     <section class="card">
       <div class="cardPad">
         <p class="sub" style="margin-bottom:10px;">
-          아래는 “소개 페이지”에 넣기 좋은 초간단 데모입니다. 실제 사주 계산 대신,
-          입력을 받아 <b>표시용 텍스트</b>를 만드는 형태입니다.
+          Myeong은 정보의 조각을 모아 관조의 문장을 만듭니다.
+          여기서는 로컬에서만 간단히 요약을 생성합니다.
         </p>
 
         <div class="formRow">
           <div class="field">
-            <label for="name">이름</label>
-            <input id="name" placeholder="예: 정길" />
+            <label for="name">이름(선택)</label>
+            <input id="name" placeholder="예: 정명" />
           </div>
           <div class="field">
             <label for="birth">생년월일</label>
             <input id="birth" type="date" />
           </div>
           <div class="field">
-            <label for="time">출생 시간(대략)</label>
+            <label for="time">출생 시간</label>
             <select id="time">
               <option value="unknown">모름</option>
               <option value="ja">子 (23-01)</option>
@@ -358,22 +343,27 @@
               <option value="hai">亥 (21-23)</option>
             </select>
           </div>
+          <div class="field">
+            <label for="place">출생지(도시)</label>
+            <input id="place" placeholder="예: Seoul" />
+          </div>
         </div>
 
         <div class="ctaRow" style="margin-top:12px;">
-          <button class="btn primary" id="btnMake" type="button">요약 만들기</button>
+          <button class="btn primary" id="btnMake" type="button">기록 만들기</button>
           <button class="btn" id="btnReset" type="button">초기화</button>
         </div>
 
         <div class="result" id="result">
-          입력 후 “요약 만들기”를 누르면 소개 문구가 표시됩니다.
+          기록을 만들면 Myeong의 문장이 표시됩니다.
         </div>
+        <div class="note">※ 입력 정보는 이 페이지 안에서만 사용되며 저장/전송되지 않습니다.</div>
       </div>
     </section>
 
     <footer>
-      <div class="tagline">四柱八字 · 陰陽 · 五行</div>
-      <div>© <span id="year"></span> SajuPalsa. Intro landing page.</div>
+      <div class="tagline">命 · Calm · Observant · Precise</div>
+      <div>© <span id="year"></span> Myeong. Mystic landing page.</div>
     </footer>
   </div>
 
@@ -394,22 +384,23 @@
     }
 
     function makeSummary(){
-      const name = $("name").value.trim() || "사용자";
+      const name = $("name").value.trim() || "당신";
       const birth = $("birth").value;
       const t = $("time").value;
+      const place = $("place").value.trim() || "미기록";
 
       const birthTxt = birth ? formatDate(birth) : "생년월일 미입력";
       const timeTxt = timeLabel[t] || "시간 미상";
 
       const msg =
-`[사주팔자 소개 데모]
+`[Myeong 기록]
 - 이름: ${name}
-- 출생: ${birthTxt} / ${timeTxt}
+- 생년월일: ${birthTxt}
+- 시간: ${timeTxt}
+- 장소: ${place}
 
-사주팔자(四柱八字)는 연·월·일·시(四柱)를 기준으로,
-천간·지지의 조합(八字)을 통해 성향/균형(陰陽·五行)과 흐름을 해석합니다.
-
-※ 이 화면은 소개용 데모이며, 실제 만세력 계산 로직은 포함하지 않습니다.`;
+Myeong은 숫자의 결을 모아 조용히 흐름을 관찰합니다.
+당신의 리듬은 과장되지 않게, 정밀하게 기록됩니다.`;
 
       $("result").textContent = msg;
     }
@@ -418,13 +409,14 @@
       $("name").value = "";
       $("birth").value = "";
       $("time").value = "unknown";
-      $("result").textContent = "입력 후 “요약 만들기”를 누르면 소개 문구가 표시됩니다.";
+      $("place").value = "";
+      $("result").textContent = "기록을 만들면 Myeong의 문장이 표시됩니다.";
     }
 
     $("btnMake").addEventListener("click", makeSummary);
     $("btnReset").addEventListener("click", resetAll);
-    $("btnScrollHow").addEventListener("click", () => {
-      document.querySelector("#how").scrollIntoView({ behavior: "smooth", block: "start" });
+    $("btnScrollCat").addEventListener("click", () => {
+      document.querySelector("#cat").scrollIntoView({ behavior: "smooth", block: "start" });
     });
 
     $("year").textContent = new Date().getFullYear();
